@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="es" data-tema="oscuro">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ayuda y soporte — Willy Linux Max 2</title>
+<meta name="description" content="Servicios de ayuda de Willy Linux Max 2: ayuda dentro del sistema, preguntas frecuentes, problemas conocidos con su arreglo y cómo reportar un defecto con evidencia.">
+<link rel="icon" href="assets/img/marca/lobo-512.png">
+<link rel="stylesheet" href="assets/css/willy.css">
+</head>
+
+<body>
+<header class="top">
+  <div class="interior">
+    <a class="marca" href="index.html">
+      <img src="assets/img/marca/lobo-512.png" alt="Logo de Willy Linux Max: cabeza de lobo en línea sobre fondo azul">
+      <span>Willy Linux Max<small>versión 2 · KDE Plasma</small></span>
+    </a>
+    <nav class="principal">
+      <a href="index.html">Inicio</a>
+      <a href="capturas.html">Capturas</a>
+      <a href="aplicaciones.html">Aplicaciones</a>
+      <a href="documentacion.html">Documentación</a>
+      <a href="descargas.html">Descargas</a>
+      <a href="ayuda.html">Ayuda</a>
+      <a href="licencias.html">Licencias</a>
+    </nav>
+    <button class="tema" type="button">Tema: oscuro</button>
+  </div>
+</header>
+
+<main>
+
+<section class="hero" style="grid-template-columns:1fr">
+  <div>
+    <p class="eyebrow">Ayuda</p>
+    <h2>Primero el sistema, luego esta página</h2>
+    <p class="sub">Willy Linux Max 2 trae ayuda dentro de la propia imagen: el instalador tiene sus tres
+      enlaces, la guía de Android se abre desde el menú y la pestaña «Info» reúne los datos que hacen falta
+      para describir un problema sin adivinar. Esta página recoge lo mismo y añade lo que solo se puede
+      explicar con la build delante.</p>
+  </div>
+</section>
+
+<section id="dentro">
+  <p class="eyebrow">Servicios de ayuda</p>
+  <h2>Lo que ya está dentro del sistema</h2>
+  <div class="rejilla">
+    <div class="tarjeta lista"><div class="icono">🧭</div><div>
+      <h3>Willy Ayuda</h3>
+      <p>Enlace del pie del instalador. Es la puerta de la documentación en el momento en que más se
+        necesita: antes de tocar particiones, con el USB puesto y sin nada instalado todavía.</p></div></div>
+    <div class="tarjeta lista"><div class="icono">⚠️</div><div>
+      <h3>Problemas conocidos</h3>
+      <p>Enlace del instalador a la lista de defectos abiertos. Se decidió que el instalador los mostrara en
+        vez de esconderlos: si un paso puede fallar, hay que decirlo antes de que la persona lo descubra con
+        su disco por delante.</p></div></div>
+    <div class="tarjeta lista"><div class="icono">📝</div><div>
+      <h3>Notas de publicación</h3>
+      <p>Qué cambió en esta imagen respecto a la anterior y qué verificaciones están pendientes de cerrar.</p></div></div>
+    <div class="tarjeta lista"><div class="icono">📱</div><div>
+      <h3>Aplicaciones de Android (Waydroid)</h3>
+      <p>Lanzador del menú que abre una Konsola con la guía de cuatro pasos. Comprueba requisitos antes de
+        tocar nada y no ejecuta mandatos de administración sin preguntar.</p></div></div>
+    <div class="tarjeta lista"><div class="icono">ℹ️</div><div>
+      <h3>Pestaña «Info»</h3>
+      <p>Preferencias del Sistema → Info. Placa, modelo del equipo, CPU, memoria por módulo, gráficos,
+        discos, red, versión de Willy y complementos. Es la foto que hay que adjuntar al reportar.</p></div></div>
+    <div class="tarjeta lista"><div class="icono">📊</div><div>
+      <h3>Administrador de tareas</h3>
+      <p>Monitor del sistema de KDE con lanzador propio en español: procesos, rendimiento, sensores y
+        arranque. Sirve para ver qué está consumiendo el equipo cuando algo va lento.</p></div></div>
+  </div>
+  <div class="aviso"><b>La ayuda de KDE también está ahí.</b> El buscador de Preferencias del Sistema, la
+    documentación de Plasma y los foros de la comunidad KDE responden la mayoría de dudas del escritorio.
+    Willy no reescribió Plasma: lo vistió y lo dejó configurado.</div>
+</section>
+
+<section id="faq">
+  <p class="eyebrow">Preguntas frecuentes</p>
+  <h2>Lo que siempre preguntan</h2>
+  <details><summary>¿Esto es Windows modificado?</summary>
+    <p>No. Es Linux: kernel de Linux, paquetes del archivo de Ubuntu 24.04 y escritorio KDE Plasma. Lo que se
+      parece a Windows 11 es el tema visual y la disposición del panel, no el sistema.</p></details>
+  <details><summary>¿Puedo instalar mis programas de Windows y funcionarán todos?</summary>
+    <p>Muchos sí, no todos. Wine ejecuta una parte importante del software de escritorio, sobre todo
+      aplicaciones antiguas o sencillas y algunos instaladores .NET. Los programas que dependen de
+      componentes de Windows modernos, de DRM o de anticheat no funcionan. Antes de comprometer un puesto de
+      trabajo con esto, prueba el programa concreto en la sesión live: para eso existe.</p></details>
+  <details><summary>¿Y los .apk de Android?</summary>
+    <p>Con Waydroid, en el equipo ya instalado, con virtualización por hardware activada y sesión Wayland, y
+      sobre una imagen x86_64: las apps compiladas solo para ARM no corren sin capa de traducción, que no se
+      puede incluir. No hay Google Play. La guía del menú te dice en dos minutos si tu caso es viable.</p></details>
+  <details><summary>¿Se puede usar sin instalar?</summary>
+    <p>Sí, y es la forma recomendada de probarla: la sesión live arranca desde el USB, no escribe en el disco
+      interno y no se auto-bloquea. Todo lo que hagas se pierde al apagar.</p></details>
+  <details><summary>¿Pisa mi Windows si instalo?</summary>
+    <p>No si eliges bien el destino. La opción «borrar todo el disco» sí lo borra. Para dual boot, usa el paso
+      de particiones manuales sobre el espacio libre que dejaste, y deja la partición EFI que ya existe. El
+      instalador añade la entrada de Windows al menú de GRUB.</p></details>
+  <details><summary>¿Cómo actualizo el sistema?</summary>
+      <p><code>sudo apt update &amp;&amp; sudo apt full-upgrade</code>, o Discover desde el menú. Una Willy
+      instalada se actualiza sola contra los repositorios de Ubuntu: no depende de un servidor de Willy para
+      estar al día.</p></details>
+  <details><summary>¿Hay tienda de aplicaciones?</summary>
+    <p>Discover, el gestor de software de KDE, con paquetes del sistema y Flatpak de Flathub.</p></details>
+  <details><summary>¿Cuál es la contraseña del usuario live?</summary>
+    <p>No tiene. El usuario <code>willy</code> de la sesión live se crea sin contraseña y con permiso de
+      administración sin clave, y eso solo aplica a la live. En el sistema instalado manda la contraseña que
+      tú escribiste al instalar (mínimo ocho caracteres).</p></details>
+  <details><summary>¿Puedo usarla en el equipo del trabajo?</summary>
+    <p>Para una demostración, sí. Para un puesto de producción con directivas de seguridad, cuentas de
+      dominio o software que exija soporte, no es la herramienta adecuada todavía: es un proyecto de grado
+      con dos verificaciones abiertas.</p></details>
+  <details><summary>¿Por qué la imagen pesa casi 5 GB?</summary>
+    <p>Porque lleva dentro los dos navegadores, la suite ofimática completa con idioma y ayuda, la suite
+      creativa, Wine con mono y gecko y el escritorio entero. Se puede adelgazar quitando capas, y ahí está el
+      cambio: más cómodo para descargar, menos útil sin internet.</p></details>
+</section>
+
+<section id="problemas">
+  <p class="eyebrow">Problemas conocidos</p>
+  <h2>Síntoma, causa y qué hacer</h2>
+  <div class="tabla"><table>
+    <thead><tr><th>Síntoma</th><th>Qué está pasando</th><th>Qué hacer</th></tr></thead>
+    <tbody>
+      <tr><td>Pantalla negra al arrancar la live</td><td>El controlador de la gráfica del kernel no se lleva
+        bien con ese hardware.</td><td>En el menú de arranque, elegir <b>«arranque con graficos seguros»</b>
+        (<code>nomodeset</code>). Si con eso entra, se puede instalar el controlador propietario de NVIDIA o
+        AMD después.</td></tr>
+      <tr><td>El USB no aparece o no arranca en un equipo UEFI</td><td>Secure Boot o Fast Boot lo bloquean.</td>
+        <td>Desactivar Secure Boot en la firmware. Con Ventoy, usar su entrada «Secure Boot» con la clave MOK
+          enrollada. Y probar otro puerto: los USB 3.0 con el cable largo a veces no se ven en el arranque.</td></tr>
+      <tr><td>Arranca el Windows instalado en lugar del USB</td><td>El orden de arranque de la firmware manda.</td>
+        <td>Entrar al menú de arranque con <kbd>F12</kbd>/<kbd>F8</kbd>/<kbd>Esc</kbd> al encender y elegir el
+          pendrive esa vez. La entrada «Reiniciar al firmware» del menú de Willy sirve para llegar a la
+          configuración sin buscar la tecla.</td></tr>
+      <tr><td>Sin internet en la live</td><td>Red sin configurar, o firmware de Wi-Fi que no venía en el
+        kernel.</td><td>Mirar el icono de la bandeja y conectar. Si la red está en el menú pero no levanta,
+        comprobar que no se arrancó con la entrada «sin red en el live». Para Wi-Fi con chip Broadcom o Realtek
+        reciente, hace falta el firmware adicional: en el sistema instalado se añade con Discover o
+        <code>apt</code>.</td></tr>
+      <tr><td>El teclado escribe mal la ñ o el <code>/</code></td><td>Mapa de teclado equivocado: «Español de
+        España» no es «Latinoamérica».</td><td>Preferencias del Sistema → Entrada → Teclado, y elegir
+        <code>Español de Latinoamérica</code>. En el instalador, el paso de Teclado tiene cuadro de prueba:
+        úsalo antes de seguir.</td></tr>
+      <tr><td>El primer <code>.exe</code> tarda muchísimo</td><td>Es Wine creando el prefijo. Medido: ~2
+        minutos.</td><td>Esperar la primera vez. Si se cerró a la mitad, borrar <code>~/.wine</code> y volver a
+        empezar.</td></tr>
+      <tr><td>Un instalador de Windows se queda en blanco o da error</td><td>Pide una versión de Windows
+        distinta, o una dependencia que hay que instalar.</td><td>Abrir «Configurar Wine» y cambiar la versión
+        de Windows simulada (10 → 7 o 11). Después, <code>winetricks</code> para la dependencia que pida
+        (vcrun, directx, corefonts).</td></tr>
+      <tr><td>Waydroid no arranca</td><td>Falta <code>/dev/kvm</code>, la sesión es X11 o no está el módulo
+        <code>binder_linux</code>.</td><td>Volver a lanzar la guía del menú: ella misma dice cuál de los tres
+          falta y cómo se arregla cada uno.</td></tr>
+      <tr><td>El panel se ve con un solo tramo o sin el logo del lobo</td><td>El aspecto de Willy no se aplicó
+        en esa cuenta (por ejemplo, una creada antes del arreglo o con configuración previa).</td><td>
+        Preferencias del Sistema → Aspecto → Elegir el paquete de aspecto de Willy y aplicar. Solo cambia el
+        aspecto, no borra tus paneles personalizados.</td></tr>
+      <tr><td>El instalador se detiene antes de terminar</td><td>Defecto abierto en la build en curso: la
+        instalación guiada hasta el final todavía no está verificada en hardware.</td><td>Probar en una máquina
+        virtual primero, guardar el registro con el botón «Depuración» del instalador y reportarlo. Si hay un
+        equipo donde se pueda perder el contenido del disco, es el mejor banco de pruebas.</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section id="reportar">
+  <p class="eyebrow">Reportar un defecto</p>
+  <h2>Cómo contar un problema para que se pueda arreglar</h2>
+  <div class="pasos">
+    <div class="paso"><h3>Captura la pantalla con el síntoma</h3><p>La tecla <kbd>Imp</kbd>
+      <kbd>Prt</kbd> <kbd>Scr</kbd> guarda en <code>~/Imágenes</code> con el propio KWin.</p></div>
+    <div class="paso"><h3>Añade la pestaña Info</h3><p>Preferencias del Sistema → Info. Marca, modelo de placa,
+      CPU, memoria, gráfica, discos y versión de la imagen: sin eso, un problema de gráficos no se puede
+      reproducir.</p></div>
+    <div class="paso"><h3>Di exactamente qué entrada del menú usaste</h3><p>Normal, gráficos seguros, consola o
+      sin red. Es la diferencia entre un fallo reproducible y uno que no.</p></div>
+    <div class="paso"><h3>Adjunta el registro si es el instalador</h3><p>El botón «Depuración» del instalador
+      abre el registro de Calamares. Copiarlo tal cual, no resumido.</p></div>
+  </div>
+  <div class="aviso ad"><b>Canal de reporte.</b> La dirección pública definitiva (un repositorio con
+    incidencias abiertas a la comunidad) está pendiente de la decisión de la autora sobre cómo quiere
+    asumirla. Hasta entonces, los problemas se reportan por el mismo canal por el que se recibió la imagen,
+    con la información de los cuatro pasos de arriba. Esta página no publica una dirección de contacto que
+    no exista.</div>
+</section>
+
+<section id="seguridad">
+  <p class="eyebrow">Seguridad</p>
+  <h2>Dos cosas que hay que decir sin rodeos</h2>
+  <div class="rejilla">
+    <div class="tarjeta"><h3>La live no es un sistema seguro</h3><p>Cualquiera con el USB puede entrar como
+      administrador sin contraseña. Está diseñado así para demostraciones. No guardes datos sensibles en una
+      sesión live ni la uses para entrar en cuentas bancarias en un equipo que no controlas.</p></div>
+    <div class="tarjeta"><h3>El cifrado, al instalar</h3><p>Si el equipo puede perderse, en el paso de
+      particiones manuales conviene una <code>/home</code> cifrada con LUKS, o el disco entero cifrado. Es una
+      decisión de quien instala; la imagen no lo fuerza porque en una demostración estorba.</p></div>
+  </div>
+</section>
+
+</main>
+
+<footer class="pie">
+  <div class="interior">
+    <div>
+      <h4>Willy Linux Max</h4>
+      <p>Distribución de Linux de escritorio construida sobre Ubuntu LTS con identidad propia,
+        como trabajo de grado. Uso libre con atribución.</p>
+    </div>
+    <div>
+      <h4>Documentación</h4>
+      <ul>
+        <li><a href="documentacion.html">Instalación y primer arranque</a></li>
+        <li><a href="aplicaciones.html">Aplicaciones de Windows y Android</a></li>
+        <li><a href="descargas.html">Imágenes y verificación</a></li>
+        <li><a href="capturas.html">Galería</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Soporte</h4>
+      <ul>
+        <li><a href="ayuda.html">Preguntas frecuentes</a></li>
+        <li><a href="ayuda.html#problemas">Problemas conocidos</a></li>
+        <li><a href="licencias.html">Licencias y procedencia</a></li>
+      </ul>
+    </div>
+    <div class="legal">
+      <p>© <span data-anio>2026</span> Willy Linux. Ubuntu es una marca registrada de Canonical Ltd.
+        KDE y Plasma son marcas de KDE e.V. Windows es una marca registrada de Microsoft Corporation;
+        Willy Linux Max no está afiliada con Microsoft ni con Canonical. Wine no emula Windows: ejecuta
+        lo que su capa de compatibilidad permite ejecutar.</p>
+    </div>
+  </div>
+</footer>
+
+<div id="visor" role="dialog" aria-label="Captura ampliada"><div><img src="" alt=""><p></p></div></div>
+<script src="assets/js/site.js"></script>
+</body>
+</html>

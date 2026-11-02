@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="es" data-tema="oscuro">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aplicaciones — Willy Linux Max 2 (.exe de Windows, .apk de Android y el resto)</title>
+<meta name="description" content="Qué trae instalado Willy Linux Max 2 y cómo usar aplicaciones de Windows (.exe/.msi con Wine 11, mono y gecko dentro de la imagen) y de Android (.apk con Waydroid en el equipo instalado).">
+<link rel="icon" href="assets/img/marca/lobo-512.png">
+<link rel="stylesheet" href="assets/css/willy.css">
+</head>
+
+<body>
+<header class="top">
+  <div class="interior">
+    <a class="marca" href="index.html">
+      <img src="assets/img/marca/lobo-512.png" alt="Logo de Willy Linux Max: cabeza de lobo en línea sobre fondo azul">
+      <span>Willy Linux Max<small>versión 2 · KDE Plasma</small></span>
+    </a>
+    <nav class="principal">
+      <a href="index.html">Inicio</a>
+      <a href="capturas.html">Capturas</a>
+      <a href="aplicaciones.html">Aplicaciones</a>
+      <a href="documentacion.html">Documentación</a>
+      <a href="descargas.html">Descargas</a>
+      <a href="ayuda.html">Ayuda</a>
+      <a href="licencias.html">Licencias</a>
+    </nav>
+    <button class="tema" type="button">Tema: oscuro</button>
+  </div>
+</header>
+
+<main>
+
+<section class="hero" style="grid-template-columns:1fr">
+  <div>
+    <p class="eyebrow">Aplicaciones</p>
+    <h2>Windows, Android y el escritorio, con lo que de verdad funciona</h2>
+    <p class="sub">Esta página dice qué viene instalado, cómo se usa cada cosa y <b>dónde está el límite</b>.
+      Un <code>.exe</code> se ejecuta con Wine, que es una capa de compatibilidad, no una máquina virtual con
+      Windows dentro: hay programas que van perfectos, otros con defectos y otros que no van. Lo mismo con los
+      <code>.apk</code>. Prometer más sería el error típico de estas distribuciones.</p>
+  </div>
+</section>
+
+<section id="windows">
+  <p class="eyebrow">Aplicaciones de Windows</p>
+  <h2><code>.exe</code> y <code>.msi</code> con Wine 11, sin pedir descargas</h2>
+  <div class="pasos">
+    <div class="paso"><h3>Doble clic en el fichero</h3>
+      <p>El explorador Dolphin tiene asociados a Wine los tipos <code>application/x-ms-dos-executable</code>
+        (<code>.exe</code>), <code>application/x-msi</code>, <code>application/x-ms-shortcut</code>,
+        <code>application/x-bat</code> y <code>application/x-mswinurl</code>. Al pulsar el instalador se abre
+        con la opción «Abrir con Wine» en el menú contextual.</p></div>
+    <div class="paso"><h3>La primera vez tarda</h3>
+      <p>Wine crea su «prefijo» (la carpeta <code>~/.wine</code> con su falso <code>C:\windows</code>). Medido
+        en esta build: <b>unos 2 minutos</b> en la primera ejecución. Las siguientes arrancan normal.</p></div>
+    <div class="paso"><h3>No aparece el aviso de descargar mono ni gecko</h3>
+      <p>Aquí está el trabajo fino. El Wine 11 del repositorio oficial <b>no trae</b> <code>wine-mono</code>
+        (para programas .NET) ni <code>wine-gecko</code> (para los controles con navegador interno), y en
+        Ubuntu no existen como paquetes. Sin ellos, un instalador .NET se queda clavado pidiendo internet.
+        Willy Linux Max 2 los lleva dentro de la imagen, en las dos rutas que Wine sondea
+        (<code>/usr/share/wine</code> y <code>/opt/wine-stable/share/wine</code>).</p></div>
+    <div class="paso"><h3>Después, como en Windows</h3>
+      <p>El programa instalado aparece en el menú de aplicaciones y en el escritorio de Wine. Para quitarlo,
+        el lanzador «Desinstalar programa de Windows» abre el <code>uninstall</code> que el propio programa
+        registró.</p></div>
+  </div>
+
+  <div class="rejilla" style="margin-top:20px">
+    <div class="tarjeta"><h3>Versiones exactas</h3><p>Wine 11 (rama stable, repo oficial de WineHQ),
+      <code>wine-mono 10.4.1</code> y <code>wine-gecko 2.47.4</code> en x86 y x86_64.</p></div>
+    <div class="tarjeta"><h3>Por qué esas versiones</h3><p>No son «la última publicada»: son las que el
+      propio binario de Wine espera. El literal está dentro de <code>mscoree.dll</code> y
+      <code>mshtml.dll</code>, escrito en UTF-16. Con mono 11.3.0 Wine ignora el fichero y vuelve a ofrecer
+      la descarga.</p></div>
+    <div class="tarjeta"><h3>Cómo se probó</h3><p>Con la red cortada dentro del entorno de compilación y un
+      prefijo limpio: <code>wineboot</code> instaló solo el mono local (4.841 ficheros) y un ensamblado .NET
+      real (<code>mono-cil-strip.exe</code>) respondió por su cuenta. Sin internet, funcionando.</p></div>
+  </div>
+
+  <h3>Lanzadores que trae el menú</h3>
+  <div class="tabla"><table>
+    <thead><tr><th>Nombre en el menú</th><th>Qué hace</th></tr></thead>
+    <tbody>
+      <tr><td>Configurar Wine</td><td><code>winecfg</code>: versión de Windows a imitar (10 por defecto),
+        discos asignados, gráficos, audio, ratón y bibliotecas.</td></tr>
+      <tr><td>Consola de Windows</td><td><code>cmd</code> dentro de Wine, para instaladores que se lanzan por
+        línea de mandatos.</td></tr>
+      <tr><td>Desinstalar programa de Windows</td><td>El panel de desinstalar de Wine, sobre el prefijo del
+        usuario.</td></tr>
+      <tr><td>Winetricks</td><td>Instalador de dependencias y fuentes que muchos programas de Windows piden
+        (directx, vcrun, corefonts). Está en el sistema; ten en cuenta que descarga de internet.</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="aviso ad"><b>Lo que NO hay que esperar de Wine.</b> No es Windows: no corre el instalador de
+    Adobe Creative Cloud, ni juegos con anticheat de nivel kernel, ni todo lo que use DirectX 12 avanzado.
+    Antes de instalar un programa concreto, consulta su estado en la base de aplicaciones de Wine
+    (<a href="https://appdb.winehq.org">appdb.winehq.org</a>). Si un programa solo funciona en Windows real,
+    la respuesta correcta es una máquina virtual con Windows, no una capa de compatibilidad.</div>
+</section>
+
+<section id="android">
+  <p class="eyebrow">Aplicaciones de Android</p>
+  <h2><code>.apk</code> con Waydroid, en el equipo ya instalado</h2>
+  <p class="sub">Waydroid no es un emulador: es un contenedor que corre Android x86_64 sobre el kernel de
+    Willy. Por eso pide tres cosas que una sesión live no puede dar.</p>
+  <div class="rejilla">
+    <div class="tarjeta lista"><div class="icono">🧠</div><div><h3>/dev/kvm</h3>
+      <p>Necesita virtualización por hardware (VT-x o AMD-V) activada en la firmware. Dentro de una máquina
+        virtual normalmente no está disponible.</p></div></div>
+    <div class="tarjeta lista"><div class="icono">🖥️</div><div><h3>Sesión Wayland</h3>
+      <p>Waydroid no dibuja sobre X11. Al iniciar sesión, en el desplegable «Sesión» de la pantalla de acceso
+        hay que elegir «Plasma (Wayland)».</p></div></div>
+    <div class="tarjeta lista"><div class="icono">💾</div><div><h3>1,5 GB de imagen</h3>
+      <p>La imagen de Android se baja y se guarda en disco. En la sesión live se perdería al apagar el
+        equipo, y pesaríamos gigas más en el ISO por algo que no se puede usar ahí.</p></div></div>
+  </div>
+  <h3>La guía que sí viene en el ISO</h3>
+  <p>El menú trae <b>«Aplicaciones de Android (Waydroid)»</b>, que abre una Konsola con un recorrido de cuatro
+    pasos. No ejecuta nada con permisos de administración sin preguntar y comprueba antes de tocar:</p>
+  <div class="pasos">
+    <div class="paso"><h3>Dónde estamos</h3><p>Si detecta <code>boot=live</code> en la línea de arranque, para
+      y explica por qué hay que instalar primero. Si es el sistema instalado, sigue.</p></div>
+    <div class="paso"><h3>Requisitos del equipo</h3><p>Mira <code>/dev/kvm</code>, el tipo de sesión y si el
+      módulo <code>binder_linux</code> está en el kernel. Si falta algo, dice exactamente qué activar en la
+      firmware o cómo cambiar a Wayland, y no intenta arreglarlo a la fuerza.</p></div>
+    <div class="paso"><h3>El paquete</h3><p>Comprueba si Ubuntu lo trae en <em>universe</em> y muestra el
+      mandato que va a ejecutar antes de ejecutarlo. Si no está en los repositorios, dice cuál es la vía
+      oficial (<a href="https://waydro.id">waydro.id</a>) y no añade repositorios de terceros sin que los veas
+      antes.</p></div>
+    <div class="paso"><h3>La imagen de Android</h3><p>Otro mandato antes y después:
+      <code>waydroid init -f GSI</code>, <code>waydroid session start</code> y
+      <code>waydroid show-full-ui</code>. Para un <code>.apk</code> concreto:
+      <code>waydroid app install /ruta/al.apk</code>.</p></div>
+  </div>
+  <div class="aviso ad"><b>Límite honesto sobre los .apk.</b> La imagen que se descarga es x86_64. La mayoría
+    del catálogo de la tienda de Android está compilado solo para ARM, y sin una capa de traducción ARM esas
+    apps no corren. Esa capa no se puede incluir con Willy. Lo que sí funciona de forma previsible son los
+    <code>.apk</code> x86_64 y los que traen bibliotecas nativas para x86_64. Y otra cosa que hay que decir
+    claro: <b>no hay Google Play</b>, ni cuentas de Google integradas; las apps se instalan por su fichero
+    <code>.apk</code>.</div>
+</section>
+
+<section id="preinstaladas">
+  <p class="eyebrow">Lo que ya está instalado</p>
+  <h2>Aplicaciones de la imagen</h2>
+  <p class="sub">Versiones medidas en el entorno de compilación de la build del 31 de octubre y 1 de
+    noviembre de 2026. Una rebuild con actualizaciones del archivo puede cambiar el número menor.</p>
+  <div class="tabla"><table>
+    <thead><tr><th>Categoría</th><th>Aplicación</th><th>Versión</th><th>De dónde viene</th></tr></thead>
+    <tbody>
+      <tr><td rowspan="2">Navegación</td><td>Firefox (en español)</td><td>159.0</td><td>Tarball oficial de
+        Mozilla (<code>pub/mozilla.org</code>), instalado en <code>/opt/firefox</code>. <b>No</b> es el
+        paquete transición a snap, que en Ubuntu no trae binario.</td></tr>
+      <tr><td>Google Chrome</td><td>156.0.8078.79</td><td>Repositorio oficial de Google, con su llave en
+        <code>/usr/share/keyrings</code>.</td></tr>
+      <tr><td rowspan="2">Ofimática</td><td>LibreOffice con cinta</td><td>24.2.7</td><td>Archivo de Ubuntu. La
+        interfaz de cinta (<em>notebookbar</em>) es la opción de fábrica en Writer, Calc, Impress y Draw.</td></tr>
+      <tr><td>Corrector y sinónimos en español</td><td>—</td><td><code>hunspell-es</code>,
+        <code>mythes-es</code>, <code>hyphen-es</code> y el paquete de idioma y ayuda en español.</td></tr>
+      <tr><td>Sistema</td><td>Monitor del sistema (lanzador «Administrador de tareas»)</td><td>5.27.11</td><td>
+        <code>plasma-systemmonitor</code> de KDE: procesos, rendimiento, sensores y arranque, con la cara del
+        escritorio.</td></tr>
+      <tr><td rowspan="4">Creatividad</td><td>GIMP</td><td>2.10.36</td><td rowspan="4">Archivo de Ubuntu. A
+        GIMP y Kdenlive se les añaden <code>ffmpeg</code> y <code>frei0r-plugins</code>, que no vienen como
+        dependencia obligatoria: sin ellos el menú ofrece efectos que fallan al usarlos.</td></tr>
+      <tr><td>Inkscape</td><td>1.2.2</td></tr>
+      <tr><td>Audacity</td><td>3.4.2</td></tr>
+      <tr><td>Kdenlive</td><td>23.08.5</td></tr>
+      <tr><td>Windows</td><td>Wine + mono + gecko</td><td>11 / 10.4.1 / 2.47.4</td><td>Repositorio oficial de
+        WineHQ y los MSI de <code>dl.winehq.org</code>, colocados en las rutas que Wine sondea.</td></tr>
+      <tr><td>Escritorio</td><td>KDE Plasma, Dolphin, Konsola, Kate, Okular, Discover</td><td>5.27</td><td>
+        Archivo de Ubuntu, con el tema Fluent y la capa de marca de Willy encima.</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>Cómo añadir más programas</h3>
+  <div class="pasos">
+    <div class="paso"><h3>Discover, desde el menú</h3><p>El gestor de software de KDE (paquetes deb y Flatpak).
+      Es la vía cómoda para quien no usa terminal.</p></div>
+    <div class="paso"><h3>Terminal</h3><p><code>sudo apt update</code> y luego
+      <code>sudo apt install nombre-del-paquete</code>. El <code>sudo</code> del sistema instalado pide la
+      contraseña que se creó al instalar; en la sesión live no pide ninguna.</p></div>
+    <div class="paso"><h3>Flatpak</h3><p>Para aplicaciones que no están en el archivo de Ubuntu:
+      <code>flatpak install flathub &lt;app&gt;</code>. Ya está preparado en la imagen.</p></div>
+  </div>
+
+  <h3>Qué se quedó fuera, y por escrito</h3>
+  <div class="tabla"><table>
+    <thead><tr><th>No incluye</th><th>Motivo</th></tr></thead>
+    <tbody>
+      <tr><td>El panel de control de terceros que imita Windows 11</td><td>Es binario de otro proyecto y no se
+        puede reimplementar en el plazo. Se usa el Preferencias del Sistema de KDE, con la pestaña «Info»
+        propia encima.</td></tr>
+      <tr><td>WinBoat y Docker</td><td>WinBoat no ejecuta <code>.exe</code>: arranca Windows real dentro de una
+        máquina virtual gestionada por Docker/Podman, pide KVM y una ISO de Windows. En una sesión live no
+        funciona, y arrastraba todo el motor de contenedores al ISO.</td></tr>
+      <tr><td>Iconos y temas de terceros sin licencia</td><td>Los paquetes de iconos y temas de aspecto «Windows»
+        que circulan sin archivo de licencia están fuera. La estética viene de Fluent (GPLv3) y del arte propio
+        del proyecto.</td></tr>
+      <tr><td>Paquetes transición a snap</td><td>Los <code>.desktop</code> de esos paquetes dibujan un icono que
+        muere al pulsarlo. Se purgan del menú (en esta build, el caso que apareció fue Thunderbird).</td></tr>
+      <tr><td>Steam y Heroic</td><td>Quedan para una edición de juego: arrastran dependencias de 32 bits y el
+        EULA de NVIDIA/AMD. No entraron en el alcance de esta versión.</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+</main>
+
+<footer class="pie">
+  <div class="interior">
+    <div>
+      <h4>Willy Linux Max</h4>
+      <p>Distribución de Linux de escritorio construida sobre Ubuntu LTS con identidad propia,
+        como trabajo de grado. Uso libre con atribución.</p>
+    </div>
+    <div>
+      <h4>Documentación</h4>
+      <ul>
+        <li><a href="documentacion.html">Instalación y primer arranque</a></li>
+        <li><a href="aplicaciones.html">Aplicaciones de Windows y Android</a></li>
+        <li><a href="descargas.html">Imágenes y verificación</a></li>
+        <li><a href="capturas.html">Galería</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Soporte</h4>
+      <ul>
+        <li><a href="ayuda.html">Preguntas frecuentes</a></li>
+        <li><a href="ayuda.html#problemas">Problemas conocidos</a></li>
+        <li><a href="licencias.html">Licencias y procedencia</a></li>
+      </ul>
+    </div>
+    <div class="legal">
+      <p>© <span data-anio>2026</span> Willy Linux. Ubuntu es una marca registrada de Canonical Ltd.
+        KDE y Plasma son marcas de KDE e.V. Windows es una marca registrada de Microsoft Corporation;
+        Willy Linux Max no está afiliada con Microsoft ni con Canonical. Wine no emula Windows: ejecuta
+        lo que su capa de compatibilidad permite ejecutar.</p>
+    </div>
+  </div>
+</footer>
+
+<div id="visor" role="dialog" aria-label="Captura ampliada"><div><img src="" alt=""><p></p></div></div>
+<script src="assets/js/site.js"></script>
+</body>
+</html>

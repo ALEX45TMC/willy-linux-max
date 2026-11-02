@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="es" data-tema="oscuro">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Willy Linux Max 2 — Linux de escritorio con cara de Windows 11, listo para .exe</title>
+<meta name="description" content="Willy Linux Max 2: distribución de Linux construida desde cero sobre Ubuntu 24.04 LTS con escritorio KDE Plasma, estética Windows 11, soporte de aplicaciones .exe/.msi sin internet y guía de .apk con Waydroid.">
+<link rel="icon" href="assets/img/marca/lobo-512.png">
+<link rel="stylesheet" href="assets/css/willy.css">
+</head>
+<body>
+
+<header class="top">
+  <div class="interior">
+    <a class="marca" href="index.html">
+      <img src="assets/img/marca/lobo-512.png" alt="Logo de Willy Linux Max: cabeza de lobo en línea sobre fondo azul">
+      <span>Willy Linux Max<small>versión 2 · KDE Plasma</small></span>
+    </a>
+    <nav class="principal">
+      <a href="index.html">Inicio</a>
+      <a href="capturas.html">Capturas</a>
+      <a href="aplicaciones.html">Aplicaciones</a>
+      <a href="documentacion.html">Documentación</a>
+      <a href="descargas.html">Descargas</a>
+      <a href="ayuda.html">Ayuda</a>
+      <a href="licencias.html">Licencias</a>
+    </nav>
+    <button class="tema" type="button">Tema: oscuro</button>
+  </div>
+</header>
+
+<main>
+
+<section class="hero">
+  <div>
+    <h1>Linux que <span>se parece a Windows 11</span> y sigue siendo Linux</h1>
+    <p class="lema">Willy Linux Max 2 está construida desde cero sobre Ubuntu 24.04 LTS con KDE Plasma:
+      panel centrado, esquinas redondeadas, iconos y fondos propios, y los programas ya instalados.
+      Abre un <code>.exe</code> con Wine sin necesitar internet, y trae guía para correr aplicaciones
+      de Android en el equipo ya instalado.</p>
+    <div class="badges">
+      <span>Base Ubuntu 24.04 LTS (noble)</span>
+      <span>KDE Plasma 5.27</span>
+      <span>x86_64</span>
+      <span>Español · teclado latam · America/Bogotá</span>
+      <span>Live + instalador en la misma imagen</span>
+    </div>
+    <div class="acciones">
+      <a class="boton" href="descargas.html">Descargar y verificar</a>
+      <a class="boton secundario" href="documentacion.html">Instalar en 10 pasos</a>
+      <a class="boton secundario" href="capturas.html">Ver capturas</a>
+    </div>
+  </div>
+  <div class="captura">
+    <img src="assets/img/capturas/preferencias-sistema.png" alt="Escritorio de Willy Linux Max 2 con el panel centrado, el fondo azul de floración y la ventana de Preferencias del Sistema abierta en español">
+  </div>
+</section>
+
+<section id="que-es">
+  <p class="eyebrow">Qué es</p>
+  <h2>Una distribución propia, no un ISO de otro remasterizado</h2>
+  <p class="sub">La primera Willy Linux Max se hizo parcheando la imagen de otra persona. La Max 2 se
+    hizo de otra manera: un <code>debootstrap</code> de Ubuntu 24.04 en un chroot limpio, la lista de
+    paquetes decidida una por una, y toda la identidad (iconos, decoraciones, paneles, fondos, arranque,
+    instalador) construida o licenciada para el proyecto. Cada binario sale del archivo oficial de
+    Ubuntu o del repositorio oficial de su autor.</p>
+  <div class="rejilla">
+    <div class="tarjeta lista"><div class="icono">🪟</div><div>
+      <h3>Escritorio KDE Plasma con tema propio</h3>
+      <p>Panel en dos tramos (centrado el de las aplicaciones, a la derecha la bandeja con reloj y
+        fecha debajo de la hora), decoraciones de ventana redondeadas al estilo Aurorae, modo claro y
+        oscuro, y el logo del lobo en el botón de inicio y en el arranque.</p>
+    </div></div>
+    <div class="tarjeta lista"><div class="icono">⚙️</div><div>
+      <h3>Aplicaciones de Windows sin configurar nada</h3>
+      <p>Wine 11 del repositorio oficial de WineHQ con <code>wine-mono</code> y <code>wine-gecko</code>
+        ya dentro de la imagen: un instalador <code>.exe</code> en .NET no se queda pidiendo descargas
+        si el equipo está desconectado.</p>
+    </div></div>
+    <div class="tarjeta lista"><div class="icono">📱</div><div>
+      <h3>Guía real para .apk</h3>
+      <p>El menú trae «Aplicaciones de Android (Waydroid)»: comprueba /dev/kvm, la sesión Wayland y el
+        módulo <code>binder_linux</code> antes de tocar nada y explica qué instalar. Waydroid necesita
+        el equipo instalado en disco, y la guía lo dice en vez de dejarlo colgado.</p>
+    </div></div>
+    <div class="tarjeta lista"><div class="icono">🧾</div><div>
+      <h3>Ofimática con cinta</h3>
+      <p>LibreOffice en español con la interfaz de cinta (notebookbar), diccionarios y sinónimos,
+        integración con Plasma para los diálogos de abrir/guardar, y GIMP, Inkscape, Audacity y
+        Kdenlive con sus filtros y transcodificadores.</p>
+    </div></div>
+    <div class="tarjeta lista"><div class="icono">🔎</div><div>
+      <h3>Pestaña «Info» en Preferencias del Sistema</h3>
+      <p>Fabricada para el proyecto: marca, modelo de placa y de equipo, CPU, memoria (tamaño, tipo y
+        velocidad), gráficos, discos, red y la versión de Willy con su fecha de compilación.</p>
+    </div></div>
+    <div class="tarjeta lista"><div class="icono">🔒</div><div>
+      <h3>Pensada para demostración</h3>
+      <p>La sesión live no se auto-bloquea (sin contraseña que pedir en una charla), el instalador
+        exige ocho caracteres al crear el usuario y el sistema arranca ya en español con teclado
+        latinoamericano.</p>
+    </div></div>
+  </div>
+</section>
+
+<section id="ficha">
+  <p class="eyebrow">Ficha técnica</p>
+  <h2>Lo que hay dentro</h2>
+  <div class="tabla"><table>
+    <tbody>
+      <tr><th>Base</th><td>Ubuntu 24.04 LTS «noble», amd64. Todos los paquetes del archivo oficial
+        <code>archive.ubuntu.com</code> (main, restricted, universe, multiverse) más los repositorios
+        oficiales de WineHQ y de Google Chrome.</td></tr>
+      <tr><th>Escritorio</th><td>KDE Plasma 5.27 (<code>plasma-desktop</code>) con el tema Fluent y la
+        capa de marca Willy: iconos, decoraciones Aurorae, Kvantum, SDDM, Plymouth, GRUB y Calamares.</td></tr>
+      <tr><th>Kernel</th><td>Serie HWE de Ubuntu (el mismo que trae la base en el momento de la build),
+        con <code>binder_linux</code> y los módulos KVM disponibles para Waydroid en el equipo instalado.</td></tr>
+      <tr><th>Aplicaciones</th><td>Firefox en español (tarball oficial de Mozilla), Google Chrome,
+        LibreOffice en cinta, plasma-systemmonitor, GIMP, Inkscape, Audacity, Kdenlive, Konsola,
+        Dolphin, Wine 11 y los lanzadores de Willy. Ver <a href="aplicaciones.html">Aplicaciones</a>.</td></tr>
+      <tr><th>Idioma y región</th><td>Español como idioma del escritorio, teclado latinoamericano,
+        zona horaria <code>America/Bogota</code> y formato de fechas es_CO.</td></tr>
+      <tr><th>Imagen</th><td>ISO híbrido (arranca en BIOS con syslinux y en UEFI con GRUB) que sirve
+        como sesión live y como instalador Calamares en la misma pieza. Más de 4,7 GB: <b>USB, no DVD</b>.</td></tr>
+      <tr><th>Requisitos</th><td>Equipo x86_64 con 4 GB de RAM para la sesión live (recomendados 8 GB),
+        20 GB libres para instalar y USB de 8 GB o más para grabar. UEFI o BIOS de los años 2010 en adelante.</td></tr>
+      <tr><th>Licencia</th><td>Código de Willy bajo GPL-3.0; arte de los fondos CC-BY-SA-4.0; el resto
+        conserva la licencia de cada autor. Ver <a href="licencias.html">Licencias y procedencia</a>.</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section id="estado">
+  <p class="eyebrow">Estado del proyecto</p>
+  <h2>Qué está probado y qué está en curso</h2>
+  <p class="sub">Willy Linux Max 2 se documenta como se construye: con la evidencia delante. Esta tabla
+    dice, sin adornos, qué se vio en pantalla y qué falta por ver.</p>
+  <div class="tabla"><table>
+    <thead><tr><th>Aspecto</th><th>Estado</th><th>Cómo se comprobó</th></tr></thead>
+    <tbody>
+      <tr><td>Arranque del live en BIOS y en UEFI</td><td>Probado</td><td>Capturas sucesivas con hash distinto en VirtualBox; la sesión llega al escritorio por las dos vías.</td></tr>
+      <tr><td>Marca visible (logo, panel, arranque, instalador)</td><td>Probado en pantalla y en hardware</td><td>Lectura del squashfs del ISO entregado y verificación física en el equipo.</td></tr>
+      <tr><td>Panel en dos tramos y reloj con la fecha debajo</td><td>Probado</td><td>Captura del escritorio; el layout va en el paquete de aspecto activo, no en el del shell.</td></tr>
+      <tr><td>Aplicaciones de la fase 5 (navegadores, ofimática, creatividad)</td><td>Probado en el artefacto</td><td>Auditoría de 20 piezas dentro del squashfs del ISO, lanzadores leídos uno a uno.</td></tr>
+      <tr><td><code>.exe</code> con .NET sin red</td><td>Probado</td><td>Prueba de fuego con el prefijo limpio y la red cortada: Wine instaló el mono local y un ensamblado real respondió.</td></tr>
+      <tr><td>Instalación guiada hasta el final en un disco real</td><td>En curso</td><td>Falta el ensayo completo en hardware; en máquina virtual se detuvo antes de Particiones.</td></tr>
+      <tr><td>Pestaña «Info» pintada en la sesión live</td><td>En curso</td><td>Compilada y validada dentro del quemado (plugin con su sección de metadatos); falta la captura en la máquina virtual.</td></tr>
+      <tr><td>Aplicaciones .apk</td><td>Guía incluida</td><td>Waydroid no cabe en una sesión live; la guía comprueba requisitos en el equipo instalado.</td></tr>
+    </tbody>
+  </table></div>
+  <div class="aviso ad"><b>Antes de presentarla como definitiva.</b> Los dos puntos «en curso» están
+    abiertos. Si vas a instalarla en un equipo que te importa, haz copia previa de tus datos: el
+    instalador particiona discos y no hay forma de deshacer eso.</div>
+</section>
+
+<section id="proyecto">
+  <p class="eyebrow">El proyecto</p>
+  <h2>Trabajo de grado con método, no solo con capturas</h2>
+  <div class="rejilla">
+    <div class="tarjeta"><span class="num">2.602 → 3.100</span><h3>Paquetes auditados</h3><p>Del chroot base
+      de <code>debootstrap</code> hasta la imagen final, con el inventario de la referencia comparado
+      paquete por paquete y ruta por ruta.</p></div>
+    <div class="tarjeta"><span class="num">46</span><h3>Defectos cerrados con evidencia</h3><p>Cada arreglo
+      se escribió en el guion de la fase, se requemó y se volvió a comprobar <b>dentro del ISO</b>, no en
+      el registro de la build.</p></div>
+    <div class="tarjeta"><span class="num">9</span><h3>Fases reproducibles</h3><p>Chroot, red, idioma,
+      marca, aplicaciones, Wine, capa live, quemado y auditoría: guiones sueltos que se pueden volver a
+      correr, no una memoria de lo que se hizo.</p></div>
+    <div class="tarjeta"><span class="num">0</span><h3>Binarios heredados</h3><p>Ningún fichero copiado de
+      la imagen que sirvió de referencia. La estética es Fluent (GPLv3) más arte propio; el panel de
+      control de terceros quedó fuera.</p></div>
+  </div>
+</section>
+
+<section>
+  <div class="acciones">
+    <a class="boton" href="documentacion.html">Empezar: grabar y arrancar</a>
+    <a class="boton secundario" href="ayuda.html">Servicios de ayuda</a>
+    <a class="boton secundario" href="descargas.html">Bajar la imagen</a>
+  </div>
+</section>
+
+</main>
+
+<footer class="pie">
+  <div class="interior">
+    <div>
+      <h4>Willy Linux Max</h4>
+      <p>Distribución de Linux de escritorio construida sobre Ubuntu LTS con identidad propia,
+        como trabajo de grado. Uso libre con atribución.</p>
+    </div>
+    <div>
+      <h4>Documentación</h4>
+      <ul>
+        <li><a href="documentacion.html">Instalación y primer arranque</a></li>
+        <li><a href="aplicaciones.html">Aplicaciones de Windows y Android</a></li>
+        <li><a href="descargas.html">Imágenes y verificación</a></li>
+        <li><a href="capturas.html">Galería</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Soporte</h4>
+      <ul>
+        <li><a href="ayuda.html">Preguntas frecuentes</a></li>
+        <li><a href="ayuda.html#problemas">Problemas conocidos</a></li>
+        <li><a href="licencias.html">Licencias y procedencia</a></li>
+      </ul>
+    </div>
+    <div class="legal">
+      <p>© <span data-anio>2026</span> Willy Linux. Ubuntu es una marca registrada de Canonical Ltd.
+        KDE y Plasma son marcas de KDE e.V. Windows es una marca registrada de Microsoft Corporation;
+        Willy Linux Max no está afiliada con Microsoft ni con Canonical. Wine no emula Windows: ejecuta
+        lo que su capa de compatibilidad permite ejecutar.</p>
+    </div>
+  </div>
+</footer>
+
+<div id="visor" role="dialog" aria-label="Captura ampliada"><div><img src="" alt=""><p></p></div></div>
+<script src="assets/js/site.js"></script>
+</body>
+</html>

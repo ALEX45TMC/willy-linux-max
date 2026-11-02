@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="es" data-tema="oscuro">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Descargas — Willy Linux Max 2: imágenes, contenido y verificación</title>
+<meta name="description" content="Imágenes de Willy Linux Max 2 con su tamaño, fecha y huella sha256 generadas desde la build, qué hay dentro del ISO y cómo verificar la copia antes de grabarla.">
+<link rel="icon" href="assets/img/marca/lobo-512.png">
+<link rel="stylesheet" href="assets/css/willy.css">
+</head>
+
+<body>
+<header class="top">
+  <div class="interior">
+    <a class="marca" href="index.html">
+      <img src="assets/img/marca/lobo-512.png" alt="Logo de Willy Linux Max: cabeza de lobo en línea sobre fondo azul">
+      <span>Willy Linux Max<small>versión 2 · KDE Plasma</small></span>
+    </a>
+    <nav class="principal">
+      <a href="index.html">Inicio</a>
+      <a href="capturas.html">Capturas</a>
+      <a href="aplicaciones.html">Aplicaciones</a>
+      <a href="documentacion.html">Documentación</a>
+      <a href="descargas.html">Descargas</a>
+      <a href="ayuda.html">Ayuda</a>
+      <a href="licencias.html">Licencias</a>
+    </nav>
+    <button class="tema" type="button">Tema: oscuro</button>
+  </div>
+</header>
+
+<main>
+
+<section class="hero" style="grid-template-columns:1fr">
+  <div>
+    <p class="eyebrow">Descargas</p>
+    <h2>La imagen, su peso y su huella</h2>
+    <p class="sub">Willy Linux Max 2 se entrega como <b>un solo fichero</b>: una ISO híbrida que es sesión live
+      e instalador a la vez. Los datos de abajo (tamaño, fecha, sha256) no están escritos a mano en la página:
+      los genera un guion leyendo el directorio donde se quema la imagen, así que no pueden quedarse
+      desfasados ni decir una huella inventada.</p>
+  </div>
+</section>
+
+<section id="imagenes">
+  <p class="eyebrow">Estado de la build</p>
+  <h2>Imágenes disponibles</h2>
+  <div id="estado-iso"><p class="cargando">Leyendo <code>datos-iso.json</code>…</p></div>
+  <div class="aviso ad"><b>Publicación de la imagen.</b> Por ahora la ISO se reparte <b>directamente</b> (USB
+    o copia de un disco), no desde un servidor de descargas público: es una build de trabajo de grado que
+    todavía tiene dos verificaciones abiertas. Cuando la imagen esté cerrada y auditada se decide el canal
+    público, y esta página se actualiza con el enlace y su huella.</div>
+</section>
+
+<section id="contenido">
+  <p class="eyebrow">Qué contiene</p>
+  <h2>Dentro del ISO</h2>
+  <p class="sub">La estructura es la de un live de Ubuntu (casper), con la capa de arranque de Willy encima.
+    Estas son las rutas que se comprueban en la auditoría de cada entrega:</p>
+  <div class="tabla"><table>
+    <thead><tr><th>Ruta</th><th>Qué es</th><th>Peso aproximado</th></tr></thead>
+    <tbody>
+      <tr><td><code>/casper/filesystem.squashfs</code></td><td>El sistema entero, comprimido con
+        <code>zstd</code> a nivel 19. Descomprimido son ~12 GB de rootfs con más de 3.000 paquetes.</td><td>4,4 GB</td></tr>
+      <tr><td><code>/casper/vmlinuz</code> y <code>/casper/initrd</code></td><td>Kernel de la serie HWE y el
+        initramfs con los módulos de casper, el tema de Plymouth y el parche que añade el lanzador de
+        instalación de Willy a la lista de <code>25adduser</code>.</td><td>~120 MB</td></tr>
+      <tr><td><code>/boot/grub/</code> y <code>/boot/grub/themes/willy/</code></td><td>Menú de arranque UEFI con
+        el tema de Willy (fondo y logo) y las cuatro entradas de la live.</td><td>~10 MB</td></tr>
+      <tr><td><code>/isolinux/</code></td><td>Menú de arranque por BIOS, en texto (<code>menu.c32</code>).</td><td>~2 MB</td></tr>
+      <tr><td><code>/EFI/BOOT/BOOTX64.EFI</code></td><td>Cargador EFI para arrancar en equipos UEFI.</td><td>~1 MB</td></tr>
+      <tr><td><code>/.disk/</code></td><td>Metadatos que leen los instaladores y las herramientas para reconocer
+        el medio.</td><td>mínimo</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>Qué te llevas instalado con eso</h3>
+  <div class="rejilla">
+    <div class="tarjeta"><h3>Escritorio completo</h3><p>KDE Plasma 5.27 con el tema Fluent, la capa de marca de
+      Willy, SDDM como pantalla de acceso y el gestor de archivos Dolphin.</p></div>
+    <div class="tarjeta"><h3>Ofimática y multimedia</h3><p>LibreOffice en español con cinta, GIMP, Inkscape,
+      Audacity, Kdenlive, ffmpeg y los códecs habituales.</p></div>
+    <div class="tarjeta"><h3>Navegadores</h3><p>Firefox en español (tarball oficial) y Google Chrome, con el
+      navegador por defecto fijado a nivel de sistema y de usuario.</p></div>
+    <div class="tarjeta"><h3>Capa de Windows</h3><p>Wine 11 con mono 10.4.1 y gecko 2.47.4 dentro de la imagen,
+      cuatro lanzadores y las asociaciones de ficheros <code>.exe</code>/<code>.msi</code>.</p></div>
+    <div class="tarjeta"><h3>Módulos de Willy</h3><p>La pestaña «Info» de Preferencias del Sistema, el monitor de
+      tareas con nombre en español, la guía de Waydroid y el lanzador de instalación.</p></div>
+    <div class="tarjeta"><h3>Región ya configurada</h3><p>Español, teclado latam, <code>America/Bogota</code> y
+      formatos es_CO en el <code>/etc/skel</code>, de modo que cada cuenta nueva nace bien puesta.</p></div>
+  </div>
+
+  <div class="aviso"><b>Pesa más de lo que cabe en un DVD.</b> Con la fase de aplicaciones, la imagen ronda los
+    4,5–4,8 GB y un DVD de una capa llega a 4,7 GB. La recomendación oficial es <b>USB</b> de 8 GB o más. Se
+    puede grabar en DVD si la imagen baja de tamaño en una edición futura, pero no en esta.</div>
+</section>
+
+<section id="verificar">
+  <p class="eyebrow">Antes de grabar</p>
+  <h2>Verificar la copia</h2>
+  <div class="pasos">
+    <div class="paso"><h3>Calcula la huella</h3>
+      <p>Linux / WSL:<br><code>sha256sum willy-linux-max-2-amd64.iso</code><br>
+      Windows (PowerShell):<br><code>Get-FileHash .\willy-linux-max-2-amd64.iso -Algorithm SHA256</code></p></div>
+    <div class="paso"><h3>Compárala con la de arriba</h3>
+      <p>La comparación es de la cadena completa, sin espacios y sin importar mayúsculas. Un carácter de
+        diferencia significa que la copia no es la imagen.</p></div>
+    <div class="paso"><h3>Si no coincide</h3>
+      <p>No la grabes. Vuelve a copiar el fichero desde el origen y vuelve a calcular. Si la segunda copia
+        tampoco cuadra, el problema está en el medio de transporte (un USB barato o un lector con errores
+        dan exactamente este síntoma).</p></div>
+  </div>
+  <p>El fichero <code>SHA256SUMS</code> que acompaña a la imagen es la lista firmada de la build; el guion
+    <code>generar-datos-iso.sh</code> lee de ahí la huella en lugar de recalcularla, para que la página y el
+    registro de la build digan siempre lo mismo.</p>
+</section>
+
+<section id="historial">
+  <p class="eyebrow">Ediciones</p>
+  <h2>Las otras Willy Linux, para no mezclarlas</h2>
+  <div class="tabla"><table>
+    <thead><tr><th>Edición</th><th>Qué es</th><th>Estado</th></tr></thead>
+    <tbody>
+      <tr><td><b>Willy Linux Max 2</b></td><td>La de esta página: construida desde cero sobre Ubuntu 24.04 con
+        identidad propia.</td><td>En curso de cierre (build y verificación).</td></tr>
+      <tr><td>Willy Linux Max 1</td><td>Remaster de una imagen de terceros, en dos variantes: con Windows
+        integrado (11,25 GB) y sin Windows (6,18 GB, probada en máquina virtual).</td><td>Congelada. Referencia
+        histórica, no base de trabajo.</td></tr>
+      <tr><td>Willy Linux 2.8</td><td>Otra línea del proyecto: live-build sobre Debian trixie, con su propio
+        árbol de ediciones y su manifiesto de huellas.</td><td>Estable y documentada aparte. No se toca al
+          trabajar en la Max 2.</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+</main>
+
+<footer class="pie">
+  <div class="interior">
+    <div>
+      <h4>Willy Linux Max</h4>
+      <p>Distribución de Linux de escritorio construida sobre Ubuntu LTS con identidad propia,
+        como trabajo de grado. Uso libre con atribución.</p>
+    </div>
+    <div>
+      <h4>Documentación</h4>
+      <ul>
+        <li><a href="documentacion.html">Instalación y primer arranque</a></li>
+        <li><a href="aplicaciones.html">Aplicaciones de Windows y Android</a></li>
+        <li><a href="descargas.html">Imágenes y verificación</a></li>
+        <li><a href="capturas.html">Galería</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Soporte</h4>
+      <ul>
+        <li><a href="ayuda.html">Preguntas frecuentes</a></li>
+        <li><a href="ayuda.html#problemas">Problemas conocidos</a></li>
+        <li><a href="licencias.html">Licencias y procedencia</a></li>
+      </ul>
+    </div>
+    <div class="legal">
+      <p>© <span data-anio>2026</span> Willy Linux. Ubuntu es una marca registrada de Canonical Ltd.
+        KDE y Plasma son marcas de KDE e.V. Windows es una marca registrada de Microsoft Corporation;
+        Willy Linux Max no está afiliada con Microsoft ni con Canonical. Wine no emula Windows: ejecuta
+        lo que su capa de compatibilidad permite ejecutar.</p>
+    </div>
+  </div>
+</footer>
+
+<div id="visor" role="dialog" aria-label="Captura ampliada"><div><img src="" alt=""><p></p></div></div>
+<script src="assets/js/site.js"></script>
+</body>
+</html>

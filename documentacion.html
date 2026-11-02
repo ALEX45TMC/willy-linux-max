@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="es" data-tema="oscuro">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Documentación — Willy Linux Max 2</title>
+<meta name="description" content="Guía de Willy Linux Max 2: requisitos, grabado del USB, arranque, sesión live, instalación con Calamares, primera sesión, pestaña Info, atajos de teclado y mantenimiento.">
+<link rel="icon" href="assets/img/marca/lobo-512.png">
+<link rel="stylesheet" href="assets/css/willy.css">
+</head>
+
+<body>
+<header class="top">
+  <div class="interior">
+    <a class="marca" href="index.html">
+      <img src="assets/img/marca/lobo-512.png" alt="Logo de Willy Linux Max: cabeza de lobo en línea sobre fondo azul">
+      <span>Willy Linux Max<small>versión 2 · KDE Plasma</small></span>
+    </a>
+    <nav class="principal">
+      <a href="index.html">Inicio</a>
+      <a href="capturas.html">Capturas</a>
+      <a href="aplicaciones.html">Aplicaciones</a>
+      <a href="documentacion.html">Documentación</a>
+      <a href="descargas.html">Descargas</a>
+      <a href="ayuda.html">Ayuda</a>
+      <a href="licencias.html">Licencias</a>
+    </nav>
+    <button class="tema" type="button">Tema: oscuro</button>
+  </div>
+</header>
+
+<main>
+
+<section class="hero" style="grid-template-columns:1fr">
+  <div>
+    <p class="eyebrow">Documentación</p>
+    <h2>De la ISO al escritorio, sin suposiciones</h2>
+    <p class="sub">Esta guía está escrita sobre la imagen que se entrega, no sobre la teoría. Cada pantalla
+      que se menciona está en la ISO y cada mandato se puede copiar tal cual. Si algo de la build en curso
+      todavía no está probado en hardware, se dice en el propio paso.</p>
+    <div class="rejilla">
+      <div class="tarjeta"><h3>1. Requisitos y USB</h3><p>Qué necesita el equipo y cómo grabar la imagen sin
+        estropearla.</p></div>
+      <div class="tarjeta"><h3>2. Arranque y sesión live</h3><p>El menú de arranque, las cuatro entradas y qué
+        se puede hacer sin instalar.</p></div>
+      <div class="tarjeta"><h3>3. Instalación</h3><p>Los ocho pasos del instalador y qué decide cada uno.</p></div>
+      <div class="tarjeta"><h3>4. Después de instalar</h3><p>Primera sesión, actualizaciones, pestaña Info y
+        mantenimiento.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="requisitos">
+  <p class="eyebrow">Paso 1</p>
+  <h2>Requisitos y grabado del USB</h2>
+  <div class="tabla"><table>
+    <thead><tr><th></th><th>Mínimo</th><th>Recomendado</th></tr></thead>
+    <tbody>
+      <tr><th>Procesador</th><td>x86_64 con SSE4.2 (cualquier equipo desde ~2010)</td><td>4 núcleos</td></tr>
+      <tr><th>Memoria</th><td>4 GB para la sesión live</td><td>8 GB (la live carga el sistema en RAM)</td></tr>
+      <tr><th>Disco</th><td>20 GB libres</td><td>60 GB o más, y un SSD cambia del todo la experiencia</td></tr>
+      <tr><th>Firmware</th><td>UEFI o BIOS legacy</td><td>UEFI, con Secure Boot <b>desactivado</b></td></tr>
+      <tr><th>USB para grabar</th><td>8 GB</td><td>16 GB, USB 3.0</td></tr>
+      <tr><th>Para .apk (Waydroid)</th><td>VT-x / AMD-V activado y sesión Wayland</td><td>16 GB de RAM y 10 GB libres para la imagen de Android</td></tr>
+    </tbody>
+  </table></div>
+  <div class="aviso ad"><b>Secure Boot.</b> La imagen no está firmada con la clave de Microsoft. En un equipo
+    con Secure Boot activado el arranque puede rechazarse: desactívalo en la firmware o usa la entrada de
+    arranque por BIOS. Es un límite de cualquier distribución hecha en casa, no un defecto de Willy.</div>
+
+  <h3>Cómo grabar</h3>
+  <p>La ISO es <b>híbrida</b>: se escribe cruda, bloque a bloque, sobre el dispositivo entero. No se
+    «descomprime» ni se copian ficheros dentro del USB. Los programas que extraen contenido (modo
+    «persistent» con archivos sueltos, o copiar y pegar) no arrancan.</p>
+  <div class="pasos">
+    <div class="paso"><h3>Desde Linux</h3>
+      <p>Identifica el dispositivo entero (no la partición) y escribe:<br>
+        <code>lsblk</code><br>
+        <code>sudo dd if=willy-linux-max-2-amd64.iso of=/dev/sdX bs=4M status=progress oflag=sync</code><br>
+        <code>/dev/sdX</code> es el disco (por ejemplo <code>/dev/sdb</code>); <code>/dev/sdb1</code> es una
+        partición y no sirve. Comprueba que el USB no es el del sistema antes de pulsar Enter.</p></div>
+    <div class="paso"><h3>Desde Windows</h3>
+      <p>Rufus: selecciona la ISO y, cuando pregunte, elige el modo <b>DD / escritura de imagen</b> (no
+        «ISO» con extracción de ficheros). Ventoy también vale: copias la ISO al USB ya preparado con Ventoy
+        y la seleccionas en su menú, con la ventaja de poder tener varias imágenes en el mismo pendrive.</p></div>
+    <div class="paso"><h3>Verifica la huella antes de grabar</h3>
+      <p><code>sha256sum willy-linux-max-2-amd64.iso</code> en Linux, o
+        <code>Get-FileHash .\willy-linux-max-2-amd64.iso -Algorithm SHA256</code> en PowerShell. Compara con
+        la tabla de <a href="descargas.html">Descargas</a>. Si no coincide, el fichero llegó incompleto.</p></div>
+  </div>
+</section>
+
+<section id="arranque">
+  <p class="eyebrow">Paso 2</p>
+  <h2>Arrancar y usar la sesión live</h2>
+  <p class="sub">Con el USB puesto, se entra al menú de arranque de la firmware (suele ser <kbd>F12</kbd>,
+    <kbd>F8</kbd>, <kbd>Esc</kbd> o <kbd>F2</kbd> según la marca) y se elige el pendrive. El menú de Willy
+    tiene cuatro entradas y espera diez segundos antes de arrancar la primera.</p>
+  <div class="tabla"><table>
+    <thead><tr><th>Entrada del menú</th><th>Qué hace</th><th>Cuándo usarla</th></tr></thead>
+    <tbody>
+      <tr><td>Willy Linux Max 2</td><td>Sesión live gráfica normal (<code>quiet splash</code>).</td><td>Es la
+        que quieres el 95 % de las veces.</td></tr>
+      <tr><td>Willy Linux Max 2 (arranque con graficos seguros)</td><td>Añade <code>nomodeset</code>: el kernel
+        no carga el controlador nativo de la gráfica.</td><td>Si la pantalla se queda negra o con basura
+        gráfica. Con esta entrada la resolución puede ser baja, pero al menos se ve.</td></tr>
+      <tr><td>Willy Linux Max 2 (sesion de consola)</td><td>Arranca hasta <code>multi-user.target</code>, sin
+        escritorio.</td><td>Para diagnosticar una gráfica o entrar por consola en un equipo sin monitor.</td></tr>
+      <tr><td>Willy Linux Max 2 (sin red en el live)</td><td>Añade <code>ip=none</code>.</td><td>Para demostrar
+        el sistema sin tocar la red del sitio, o si un servidor DHCP caprichoso congela el arranque.</td></tr>
+      <tr><td>Prueba de memoria</td><td>Memtest86+ desde el menú de BIOS.</td><td>Si el equipo falla de formas
+        raras: antes de culpar a Willy, prueba la RAM.</td></tr>
+      <tr><td>Reiniciar al firmware</td><td>Devuelve a la configuración UEFI.</td><td>Para cambiar el orden de
+        arranque o desactivar Secure Boot sin salir del USB.</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>La sesión live</h3>
+  <div class="rejilla">
+    <div class="tarjeta"><h3>El usuario es <code>willy</code></h3><p>Lo crea el mecanismo <em>casper</em> al
+      arrancar, con el nombre completo «Willy» y el equipo llamado <code>willy</code>. No tiene contraseña.</p></div>
+    <div class="tarjeta"><h3><code>sudo</code> sin clave, solo en la live</h3><p>El permiso de administración
+      sin contraseña lo escribe el arranque live en tiempo de ejecución. <b>En el sistema instalado no es
+      así</b>: ahí manda la contraseña que se creó al instalar.</p></div>
+    <div class="tarjeta"><h3>Nada se guarda</h3><p>Los cambios viven en la RAM. Al apagar, se pierden. Es
+      intención: la demostración no puede dejar el equipo de otra persona tocado.</p></div>
+    <div class="tarjeta"><h3>Sin auto-bloqueo</h3><p>La pantalla no se apaga ni se bloquea sola. En una
+      demostración, un bloqueo sin contraseña deja el equipo inservible en mitad de la charla.</p></div>
+    <div class="tarjeta"><h3>Un icono en el escritorio</h3><p>«Instalar Willy Linux Max 2». Es el lanzador del
+      instalador, con la marca de Willy; no hay dos iconos ni uno de otra distribución.</p></div>
+    <div class="tarjeta"><h3>Red</h3><p>NetworkManager con el icono de la bandeja. En una máquina virtual con
+      cable virtual ya funciona al entrar; si no, se conecta desde la bandeja del sistema.</p></div>
+  </div>
+</section>
+
+<section id="instalacion">
+  <p class="eyebrow">Paso 3</p>
+  <h2>Instalar en el disco</h2>
+  <div class="aviso peligro"><b>Esto borra datos.</b> El instalador particiona discos. Antes de seguir, copia
+    lo que te importe en otro sitio y comprueba qué disco va a recibir el sistema. No hay forma de deshacer un
+    formateo.</div>
+  <div class="pasos">
+    <div class="paso"><h3>Abrir el instalador</h3><p>Doble clic al icono del escritorio, o «Instalar Willy Linux
+      Max 2» desde el menú. Se abre Calamares con la bienvenida y tres enlaces de ayuda en el pie.</p></div>
+    <div class="paso"><h3>Ubicación</h3><p>Idioma y zona horaria. Para Colombia: <code>America/Bogota</code>.
+      Lo que se elija aquí es lo que queda en el sistema instalado.</p></div>
+    <div class="paso"><h3>Teclado</h3><p>Elige <code>Español de Latinoamérica</code> (latam). Comprueba la
+      <kbd>ñ</kbd>, el <code>/</code> y el acento en el cuadro de prueba: son las tres teclas que delatan un
+      mapa mal elegido.</p></div>
+    <div class="paso"><h3>Particiones</h3><p>Tres caminos: <b>borrar todo el disco</b> (el más simple, y el que
+      se usa en una demostración), <b>reemplazar una partición</b>, o <b>manual</b> si hay otro sistema. Para
+      dual-boot con Windows, reduce primero la partición de Windows desde Windows y formatea la libre como
+      <code>ext4</code> con punto de montaje <code>/</code>. Añade una partición EFI de 512 MB si el equipo es
+      UEFI y no la hay.</p></div>
+    <div class="paso"><h3>Usuarios</h3><p>Nombre, nombre del equipo, usuario y contraseña. La contraseña exige
+      <b>ocho caracteres como mínimo</b> (el instalador de fábrica aceptaba una de uno, y eso no vale). Marca
+      «iniciar sesión automáticamente» solo en un equipo personal: en uno compartido, nadie más debería poder
+      entrar sin clave.</p></div>
+    <div class="paso"><h3>Resumen</h3><p>Lee esta pantalla. Es el último momento en el que se puede cancelar
+      sin haber tocado el disco.</p></div>
+    <div class="paso"><h3>Instalar</h3><p>Escribe el sistema en el disco. En un SSD son minutos; en un disco
+      mecánico lento y con un USB 2.0 puede tardar bastante más. El progreso se ve en pantalla.</p></div>
+    <div class="paso"><h3>Terminar</h3><p>Marca «reiniciar ahora», quita el USB cuando la pantalla lo pida y
+      el equipo arranca con GRUB de Willy.</p></div>
+  </div>
+  <div class="aviso ad"><b>Estado de este paso en la build en curso.</b> La instalación completa en un disco
+    real de hardware todavía está en verificación: en máquina virtual el asistente llegaba hasta el paso de
+    ubicación y se detenía antes de Particiones, y ese defecto está abierto mientras se quema la imagen.
+    Para el trabajo de grado se documenta como ensayo pendiente, no como garantía.</div>
+</section>
+
+<section id="despues">
+  <p class="eyebrow">Paso 4</p>
+  <h2>Después de instalar</h2>
+
+  <h3>La primera sesión</h3>
+  <p>Al entrar por primera vez, un guion de arranque aplica el aspecto de Willy (tema de iconos, decoraciones
+    y paneles) y quita su propia marca de la carpeta del usuario, para no repetirse. El aspecto se aplica
+    <b>sin resetear el layout</b>, así que la personalización que hagas después sobrevive a los reinicios.</p>
+
+  <h3>La pestaña «Info»</h3>
+  <p>Preferencias del Sistema → <b>Info</b>. Es un módulo hecho para el proyecto, no una captura de otro
+    programa. Lo que lee viene del propio equipo:</p>
+  <div class="tabla"><table>
+    <thead><tr><th>Bloque</th><th>De dónde sale</th></tr></thead>
+    <tbody>
+      <tr><td>Equipo y placa</td><td>Los campos DMI de la firmware en <code>/sys/class/dmi/id</code> (fabricante,
+        marca, modelo del equipo, fabricante y producto de la placa base, BIOS/UEFI y su versión).</td></tr>
+      <tr><td>Procesador</td><td><code>/proc/cpuinfo</code> y <code>/sys/devices/system/cpu</code>: nombre,
+        núcleos, hilos y frecuencia.</td></tr>
+      <tr><td>Memoria</td><td>Tamaño total de <code>/proc/meminfo</code> y, si hay <code>dmidecode</code>, el
+        detalle por módulo: tipo (DDR4/DDR5), velocidad y zócalo ocupado.</td></tr>
+      <tr><td>Gráficos</td><td><code>/sys/class/drm</code>: cada tarjeta con su controlador y su identificador
+        de fabricante/dispositivo.</td></tr>
+      <tr><td>Almacenamiento</td><td>Discos y particiones con su tamaño y su modelo.</td></tr>
+      <tr><td>Red</td><td>Interfaces con su dirección MAC y su estado.</td></tr>
+      <tr><td>Willy</td><td>Versión de la distribución, base, fecha de compilación de la imagen y versión del
+        escritorio.</td></tr>
+      <tr><td>Complementos</td><td>Qué binarios están realmente disponibles y a qué versión: Wine, mono, gecko,
+        los navegadores y la ofimática.</td></tr>
+      <tr><td>Arranque</td><td>Si el equipo entró por UEFI o por BIOS legacy.</td></tr>
+    </tbody>
+  </table></div>
+  <p>El detalle fino de memoria y el inventario completo de módulos piden permisos de administración: el
+    módulo los pide con la ventana de <code>pkexec</code> y, si se cancela, muestra el tamaño total sin el
+    detalle por módulo en lugar de fallar.</p>
+
+  <h3>Atajos de teclado</h3>
+  <div class="tabla"><table>
+    <thead><tr><th>Combinación</th><th>Qué hace</th><th>Origen</th></tr></thead>
+    <tbody>
+      <tr><td><kbd>Alt</kbd> + <kbd>F1</kbd></td><td>Abrir el menú de aplicaciones</td><td>Asignado por Willy en
+        el panel (el botón del lobo y esta tecla son lo mismo).</td></tr>
+      <tr><td><kbd>Alt</kbd> + <kbd>F2</kbd></td><td>Ejecutor de órdenes</td><td>Atajo clásico de KDE.</td></tr>
+      <tr><td><kbd>Meta</kbd> (⊞)</td><td>En Plasma 5.27 no está asignado por defecto</td><td>La costumbre
+        windowsista de pulsar ⊞ para abrir el menú es una mejora apuntada para la próxima edición.</td></tr>
+      <tr><td><kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>T</kbd></td><td>No está asignado por defecto</td><td>Se
+        puede crear en Preferencias del Sistema → Accesos rápidos → Personalizados, con el mandato
+        <code>konsole</code>.</td></tr>
+      <tr><td><kbd>Meta</kbd> + <kbd>E</kbd></td><td>Mostrar el escritorio (según la configuración de KWin)</td><td>
+        KDE; comprueba el tuyo en Accesos rápidos → KWin.</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>Mantener el sistema al día</h3>
+  <div class="pasos">
+    <div class="paso"><h3>Actualizaciones normales</h3><p><code>sudo apt update &amp;&amp; sudo apt full-upgrade</code>.
+      También desde Discover, con el icono de actualizaciones en la bandeja.</p></div>
+    <div class="paso"><h3>Kernel y arranque</h3><p>Al actualizar el kernel, GRUB añade la entrada nueva
+      automáticamente. Si algo deja de arrancar, en el menú de GRUB se elige la entrada anterior con
+      <kbd>Esc</kbd> al encender.</p></div>
+    <div class="paso"><h3>Reparar el arranque</h3><p>Si Windows u otro sistema pisa el gestor de arranque, la
+      herramienta del ecosistema es Boot-Repair. Con Willy arrancado desde el USB se puede instalar y usar.</p></div>
+    <div class="paso"><h3>Copias de seguridad</h3><p>Antes de tocar particiones, haz copia. La herramienta de
+      respaldo de la imagen es <code>systemback</code> o un simple <code>tar</code> del <code>/home</code> más
+      la lista de paquetes: <code>dpkg --get-selections &gt; paquetes.txt</code>.</p></div>
+  </div>
+
+  <h3>Desinstalar Willy</h3>
+  <p>Formatea la o las particiones que ocupaba desde cualquier otro sistema (la gestión de discos de un live
+    de otra distribución vale) y, si el equipo es UEFI, borra la entrada de arranque <code>ubuntu</code>/
+    <code>Willy</code> con <code>efibootmgr</code> o desde la firmware. No deja nada en el resto del disco.</p>
+</section>
+
+<section id="build">
+  <p class="eyebrow">Anexo para el trabajo de grado</p>
+  <h2>Cómo se construye la imagen</h2>
+  <p class="sub">La build es una secuencia de guiones que se pueden volver a correr. Cada fase escribe su
+    registro y la fase siguiente no empieza si la anterior no dejó su marca de terminación.</p>
+  <div class="tabla"><table>
+    <thead><tr><th>Fase</th><th>Qué hace</th><th>Cómo se comprueba</th></tr></thead>
+    <tbody>
+      <tr><td>1 · chroot</td><td><code>debootstrap</code> de Ubuntu 24.04 y la lista de paquetes, con el
+        <code>resolv.conf</code> del anfitrión montado por encima para que los <em>postinst</em> no dejen el
+        DNS en un stub que no resuelve.</td><td>Recuento de paquetes y estado de dpkg dentro del chroot.</td></tr>
+      <tr><td>2 · Fluent</td><td>Tema de iconos, tema GTK, tema de KDE, decoraciones Aurorae, Kvantum y SDDM.</td><td>Presencia de los paquetes instalados en <code>/usr/share</code>.</td></tr>
+      <tr><td>3 · marca</td><td>Fondos, iconos del lobo en todos los temas que los piden, GRUB, Plymouth,
+        Calamares, <code>/etc/skel</code>, el layout de los dos paneles y la pestaña Info.</td><td>Lectura del
+        árbol generado y, después, del squashfs del ISO.</td></tr>
+      <tr><td>4 · red e idioma</td><td>NetworkManager, localización es_CO, teclado latam, zona horaria.</td><td>Ficheros de configuración del skel y <code>/etc/locale.gen</code>.</td></tr>
+      <tr><td>5 · aplicaciones</td><td>Navegadores, ofimática, monitor, suite creativa, Wine y las guías.</td><td>Auditoría de los lanzadores y de los binarios reales, no del registro de apt.</td></tr>
+      <tr><td>6 · Wine sin red</td><td>Coloca mono y gecko en las rutas que Wine sondea y prueba con la red
+        cortada.</td><td>Prefijo limpio, <code>wineboot</code>, y un ensamblado .NET que responde.</td></tr>
+      <tr><td>7 · capa live</td><td>Parches de casper, el lanzador de instalación, el initrd y el menú de
+        arranque.</td><td>Desarmar el initrd generado y leer los ficheros dentro.</td></tr>
+      <tr><td>8 · quemado</td><td><code>mksquashfs</code> con zstd nivel 19 y <code>xorriso</code> para la ISO
+        híbrida; el ISO anterior se retira, no se borra.</td><td>Tamaño, huella y contenido del squashfs.</td></tr>
+      <tr><td>9 · auditoría</td><td>Montar el ISO entregado y comprobar dentro las piezas, la marca y los
+        lanzadores.</td><td>Informe por pieza; un «pendiente» se queda escrito como pendiente.</td></tr>
+    </tbody>
+  </table></div>
+  <div class="aviso"><b>Regla que manda en todo el proceso:</b> no fiarse del registro de la build. Un guion
+    que imprime «instalado» puede haber instalado un paquete transición sin binario, y un arreglo escrito en
+    el guion después de la última pasada no está en el ISO. Todo se comprueba montando el artefacto final.</div>
+</section>
+
+</main>
+
+<footer class="pie">
+  <div class="interior">
+    <div>
+      <h4>Willy Linux Max</h4>
+      <p>Distribución de Linux de escritorio construida sobre Ubuntu LTS con identidad propia,
+        como trabajo de grado. Uso libre con atribución.</p>
+    </div>
+    <div>
+      <h4>Documentación</h4>
+      <ul>
+        <li><a href="documentacion.html">Instalación y primer arranque</a></li>
+        <li><a href="aplicaciones.html">Aplicaciones de Windows y Android</a></li>
+        <li><a href="descargas.html">Imágenes y verificación</a></li>
+        <li><a href="capturas.html">Galería</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Soporte</h4>
+      <ul>
+        <li><a href="ayuda.html">Preguntas frecuentes</a></li>
+        <li><a href="ayuda.html#problemas">Problemas conocidos</a></li>
+        <li><a href="licencias.html">Licencias y procedencia</a></li>
+      </ul>
+    </div>
+    <div class="legal">
+      <p>© <span data-anio>2026</span> Willy Linux. Ubuntu es una marca registrada de Canonical Ltd.
+        KDE y Plasma son marcas de KDE e.V. Windows es una marca registrada de Microsoft Corporation;
+        Willy Linux Max no está afiliada con Microsoft ni con Canonical. Wine no emula Windows: ejecuta
+        lo que su capa de compatibilidad permite ejecutar.</p>
+    </div>
+  </div>
+</footer>
+
+<div id="visor" role="dialog" aria-label="Captura ampliada"><div><img src="" alt=""><p></p></div></div>
+<script src="assets/js/site.js"></script>
+</body>
+</html>

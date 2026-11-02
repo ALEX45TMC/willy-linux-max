@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="es" data-tema="oscuro">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Licencias y procedencia — Willy Linux Max 2</title>
+<meta name="description" content="De dónde viene cada pieza de Willy Linux Max 2: base Ubuntu, KDE Plasma, Fluent bajo GPLv3, arte propio CC-BY-SA, Wine, Chrome y Firefox; y qué se quedó fuera por licencia.">
+<link rel="icon" href="assets/img/marca/lobo-512.png">
+<link rel="stylesheet" href="assets/css/willy.css">
+</head>
+
+<body>
+<header class="top">
+  <div class="interior">
+    <a class="marca" href="index.html">
+      <img src="assets/img/marca/lobo-512.png" alt="Logo de Willy Linux Max: cabeza de lobo en línea sobre fondo azul">
+      <span>Willy Linux Max<small>versión 2 · KDE Plasma</small></span>
+    </a>
+    <nav class="principal">
+      <a href="index.html">Inicio</a>
+      <a href="capturas.html">Capturas</a>
+      <a href="aplicaciones.html">Aplicaciones</a>
+      <a href="documentacion.html">Documentación</a>
+      <a href="descargas.html">Descargas</a>
+      <a href="ayuda.html">Ayuda</a>
+      <a href="licencias.html">Licencias</a>
+    </nav>
+    <button class="tema" type="button">Tema: oscuro</button>
+  </div>
+</header>
+
+<main>
+
+<section class="hero" style="grid-template-columns:1fr">
+  <div>
+    <p class="eyebrow">Licencias y procedencia</p>
+    <h2>De dónde viene cada pieza</h2>
+    <p class="sub">Esta es la parte del trabajo que no se ve en las capturas y es la que más horas costó.
+      Antes de escribir un solo guion se hizo un inventario de la imagen que servía de referencia y se
+      clasificó ruta por ruta qué era redistribuible, qué era binario de un tercero y qué estaba sin
+      licenciar. Willy Linux Max 2 se construyó solo con lo primero.</p>
+  </div>
+</section>
+
+<section id="procedencia">
+  <p class="eyebrow">Lo que sí hay dentro</p>
+  <h2>Procedencia y licencia de cada componente</h2>
+  <div class="tabla"><table>
+    <thead><tr><th>Componente</th><th>Viene de</th><th>Licencia</th></tr></thead>
+    <tbody>
+      <tr><td>Base del sistema y ~3.000 paquetes</td><td>Archivo oficial de Ubuntu 24.04 «noble»
+        (<code>archive.ubuntu.com</code>), secciones main, restricted, universe y multiverse.</td><td>La de cada
+        paquete. Los binarios no se modifican: se instalan con <code>apt</code> dentro del chroot de la build.</td></tr>
+      <tr><td>Escritorio KDE Plasma, Dolphin, Konsola, Discover</td><td>El mismo archivo de Ubuntu.</td><td>GPL-2.0/3.0
+        y LGPL según el módulo. KDE e.V. es el titular de las marcas.</td></tr>
+      <tr><td>Tema de iconos, tema GTK, tema de KDE, decoraciones Aurorae, Kvantum y SDDM</td>
+        <td>Paquete <b>Fluent</b> del proyecto de <code>vinceliuice</code> (repositorios
+          <code>Fluent-icon-theme</code>, <code>Fluent-gtk-theme</code> y <code>Fluent-kde</code>).</td><td><b>GPLv3</b> los tres, comprobado en el
+          <code>COPYING</code>/<code>LICENSE</code> y en el <code>metadata.json</code> de cada uno antes de usarlos.
+          Se aplican tal cual, con el aviso de que los iconos de la marca de la distribución se sustituyen por
+          los de Willy.</td></tr>
+      <tr><td>Fondos de pantalla, logo del lobo, tema de GRUB, splash de Plymouth, marca de Calamares</td>
+        <td>Arte generado para el proyecto.</td><td>Fondos: <b>CC-BY-SA-4.0</b>, autor «Willy Linux» (consta en el
+          <code>metadata.json</code> del paquete de fondo dentro del ISO). El logo y la marca: del proyecto, con
+          atribución al usarlos.</td></tr>
+      <tr><td>Wine 11 y los lanzadores de Windows</td><td>Repositorio oficial de WineHQ
+        (<code>dl.winehq.org</code>), con su llave en <code>/etc/apt/keyrings</code>.</td><td>LGPL-2.1+ para Wine.</td></tr>
+      <tr><td><code>wine-mono 10.4.1</code> y <code>wine-gecko 2.47.4</code></td><td>Los MSI que publica el propio
+        WineHQ, copiados sin modificar a las rutas que Wine sondea.</td><td>Las de sus proyectos (Mono y el
+        motor Gecko), sin cambios de ningún tipo.</td></tr>
+      <tr><td>Firefox en español</td><td>Tarball oficial de Mozilla (<code>download-installer.cdn.mozilla.net</code>),
+        instalado en <code>/opt/firefox</code>.</td><td>MPL-2.0.</td></tr>
+      <tr><td>Google Chrome</td><td>Repositorio oficial de Google durante la build.</td><td>Propietaria, con los
+        términos de servicio de Google. Cada equipo que la use los acepta al ejecutarlo; la imagen no reempaqueta
+        el binario.</td></tr>
+      <tr><td>LibreOffice, GIMP, Inkscape, Audacity, Kdenlive, ffmpeg</td><td>Archivo de Ubuntu.</td><td>MPL-2.0/LGPL-3.0
+        (LibreOffice), GPL-3.0 (GIMP, Inkscape), GPL-2.0+ (Audacity), GPL-2.0+/3.0 (Kdenlive), LGPL-2.1+/GPL (ffmpeg).</td></tr>
+      <tr><td>Instalador Calamares</td><td>Archivo de Ubuntu, con el tema de marca de Willy en
+        <code>/etc/calamares/branding/willy</code>.</td><td>GPL-3.0.</td></tr>
+      <tr><td>Mecanismo live (casper), GRUB, ISOLinux, memtest86+</td><td>Archivo de Ubuntu y sus upstreams.</td><td>GPL.
+        La configuración de arranque es del proyecto.</td></tr>
+      <tr><td>Guion de la pestaña «Info», layout del panel, guiones de primera sesión y de build</td><td>Escritos para
+        el proyecto.</td><td>GPL-3.0, como el resto de la capa propia.</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section id="fuera">
+  <p class="eyebrow">Lo que se quedó fuera</p>
+  <h2>Cuatro negativas y el motivo de cada una</h2>
+  <div class="rejilla">
+    <div class="tarjeta"><h3>El panel de control de terceros</h3><p>La suite que imita «Settings» de Windows 11
+      en la referencia es binario de otro proyecto (una aplicación Gambas con sus módulos). No es código libre
+      redistribuible y reimplementarlo desde cero eran días. Decisión: usar el Preferencias del Sistema de KDE
+      y añadir encima el módulo propio de Info.</p></div>
+    <div class="tarjeta"><h3>Paquetes de iconos y temas «Windows» sin licencia</h3><p>Los temas de iconos y los
+      paquetes de aspecto que circulan en la referencia (los apellidos dicen que a su vez vienen de un tercero)
+      no traen archivo de licencia. Se descartaron y se montó la estética sobre Fluent (GPLv3) más el arte
+      propio.</p></div>
+    <div class="tarjeta"><h3>Ciertos plasmoids del escritorio</h3><p>El widget de «mostrar el escritorio» está sin
+      licenciar; el fondo de vídeo no declara licencia; y un menú alternativo reclama GPL-2.0+, GPL-3.0 y
+      CC-BY-SA a la vez, que es una combinación incompatible. Ninguno entra.</p></div>
+    <div class="tarjeta"><h3>WinBoat y Docker</h3><p>No por licencia: por funcionamiento. WinBoat arranca Windows
+      real dentro de una máquina virtual gestionada por contenedores, pide KVM y una ISO de Windows, y en una
+      sesión live no funciona. El soporte de <code>.exe</code> se hizo con Wine, que sí cabe y sí funciona sin
+      internet.</p></div>
+  </div>
+</section>
+
+<section id="marca">
+  <p class="eyebrow">Marcas</p>
+  <h2>Sobre el parecido con Windows</h2>
+  <p>Willy Linux Max 2 <b>no es</b> Windows, no contiene componentes de Microsoft y no está afiliada,
+    patrocinada ni aprobada por Microsoft Corporation. «Windows», «Windows 11» y el logotipo de Windows son
+    marcas registradas de Microsoft. La inspiración es puramente de estilo visual: un tema de ventanas
+    redondeadas y un panel centrado, que son decisiones de diseño, no código ni assets de Microsoft.</p>
+  <p>Del mismo modo: «Ubuntu» y «Kubuntu» son marcas de Canonical Ltd.; «KDE», «Plasma» y «Calamares»
+    pertenecen a sus respectivos titulares; «Firefox» es marca de Mozilla Foundation; «Chrome» de Google LLC;
+    y «Android» de Google LLC. Su aparición en esta documentación es descriptiva.</p>
+</section>
+
+<section id="reproducir">
+  <p class="eyebrow">Fuente del trabajo propio</p>
+  <h2>Reproducir la build</h2>
+  <p>Toda la capa propia de Willy Linux Max 2 son guiones y arte, no binarios opacos: el <code>debootstrap</code>,
+    las nueve fases de construcción, los ficheros de configuración del <code>/etc/skel</code>, el layout del
+    panel, el módulo de Preferencias y los guiones de auditoría. Con esos guiones y el archivo de Ubuntu,
+    cualquier persona con el espacio en disco suficiente puede volver a producir la misma imagen.</p>
+  <p>Los componentes bajo GPL (Fluent, Plasma, Calamares, GRUB, casper y el trabajo propio del proyecto) se
+    distribuyen con su código fuente en los repositorios de sus autores o, en el caso de la capa de Willy, a
+    petición a través del mismo canal por el que se recibe la imagen.</p>
+  <div class="aviso"><b>Si redistribuyes Willy Linux Max 2.</b> Mantén el aviso de licencias, no retires las
+    notas de procedencia de esta página y deja claro que es una build de trabajo de grado con verificaciones
+    abiertas. Si la modificas, indica qué cambiaste: quien la reciba no debería poder confundir tu versión con
+    la que se probó.</div>
+</section>
+
+</main>
+
+<footer class="pie">
+  <div class="interior">
+    <div>
+      <h4>Willy Linux Max</h4>
+      <p>Distribución de Linux de escritorio construida sobre Ubuntu LTS con identidad propia,
+        como trabajo de grado. Uso libre con atribución.</p>
+    </div>
+    <div>
+      <h4>Documentación</h4>
+      <ul>
+        <li><a href="documentacion.html">Instalación y primer arranque</a></li>
+        <li><a href="aplicaciones.html">Aplicaciones de Windows y Android</a></li>
+        <li><a href="descargas.html">Imágenes y verificación</a></li>
+        <li><a href="capturas.html">Galería</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Soporte</h4>
+      <ul>
+        <li><a href="ayuda.html">Preguntas frecuentes</a></li>
+        <li><a href="ayuda.html#problemas">Problemas conocidos</a></li>
+        <li><a href="licencias.html">Licencias y procedencia</a></li>
+      </ul>
+    </div>
+    <div class="legal">
+      <p>© <span data-anio>2026</span> Willy Linux. Ubuntu es una marca registrada de Canonical Ltd.
+        KDE y Plasma son marcas de KDE e.V. Windows es una marca registrada de Microsoft Corporation;
+        Willy Linux Max no está afiliada con Microsoft ni con Canonical. Wine no emula Windows: ejecuta
+        lo que su capa de compatibilidad permite ejecutar.</p>
+    </div>
+  </div>
+</footer>
+
+<div id="visor" role="dialog" aria-label="Captura ampliada"><div><img src="" alt=""><p></p></div></div>
+<script src="assets/js/site.js"></script>
+</body>
+</html>
