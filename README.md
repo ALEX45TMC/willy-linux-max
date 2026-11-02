@@ -5,10 +5,12 @@ Plasma 5.27**, con identidad propia (logo del lobo, fondos, panel en dos tramos,
 marcados) y capa de compatibilidad para aplicaciones de Windows con Wine.
 
 Este repositorio contiene **el sitio web del proyecto** y publica las **imágenes** en la sección de
-*Releases*.
+*Releases*. Los guiones que construyen el sistema (el chroot, la capa de marca y el quemado del ISO) **no
+están aquí todavía**: esta página publica el sitio y las imágenes, no el árbol de la build.
 
 - Sitio publicado: <https://alex45tmc.github.io/willy-linux-max/>
 - Imágenes y huellas: <https://github.com/ALEX45TMC/willy-linux-max/releases>
+- Reportar un defecto: <https://github.com/ALEX45TMC/willy-linux-max/issues>
 
 ## Empezar
 
@@ -45,7 +47,9 @@ pestaña «Info», atajos de teclado y mantenimiento) está en el sitio: [docume
 | `assets/css/willy.css`, `assets/js/site.js` | Estilo (tema claro/oscuro) y comportamiento (visor de capturas, tabla de imágenes). |
 | `assets/img/` | Capturas verificadas de la sesión live y arte de la marca. |
 | `datos-iso.json` | Tamaños, fechas y huellas de las imágenes de la build. **No está escrito a mano.** |
-| `generar-datos-iso.sh` | El guion que genera `datos-iso.json` leyendo el directorio de la build y su `SHA256SUMS`. |
+| `datos-publicacion.json` | Dónde está publicada cada edición: etiqueta de la *Release*, URLs de los tres trozos y su huella. Se escribe una vez al publicar. |
+| `generar-datos-iso.sh` | El guion que genera `datos-iso.json` leyendo el directorio de la build, su `SHA256SUMS` y `datos-publicacion.json`. |
+| `.nojekyll` | Le dice a GitHub Pages que sirva el sitio tal cual, sin pasar por Jekyll. |
 
 ## Ver y modificar el sitio localmente
 

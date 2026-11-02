@@ -66,9 +66,19 @@ for f in "$ISO_DIR"/*.anterior-*.iso; do
   HISTORIAL="${HISTORIAL}${HISTORIAL:+,}{\"archivo\":\"$(esc <<<"$b")\",\"bytes\":$t,\"tamaño_legible\":\"$(legible "$t")\",\"compilada\":\"$d\",\"sha256\":\"$(esc <<<"$s")\"}"
 done
 
-printf '{\n  "producto": "%s",\n  "version": "%s",\n  "generado": "%s",\n  "aviso": "%s",\n  "iso_principal": %s,\n  "retiradas": [%s]\n}\n' \
+# Publicación: dónde está la imagen hoy (repo, Release, trozos y sus huellas).
+# Es un fichero aparte porque estas URLs y huellas no salen del disco: salen de
+# datos-publicacion.json, que se escribe una vez al publicar y se versiona en el repo.
+PUB_FILE="$WEB/datos-publicacion.json"
+if [ -f "$PUB_FILE" ]; then
+  PUB="$(cat "$PUB_FILE")"
+else
+  PUB="null"
+fi
+
+printf '{\n  "producto": "%s",\n  "version": "%s",\n  "generado": "%s",\n  "aviso": "%s",\n  "iso_principal": %s,\n  "retiradas": [%s],\n  "publicacion": %s\n}\n' \
   "$NOMBRE" "$VERSION" "$(date -u +%Y-%m-%dT%H:%M:%SZ)" "$(esc <<<"$AVISO")" \
-  "${FILA_PRINCIPAL:-null}" "$HISTORIAL" > "$SALIDA.tmp"
+  "${FILA_PRINCIPAL:-null}" "$HISTORIAL" "$PUB" > "$SALIDA.tmp"
 mv -f "$SALIDA.tmp" "$SALIDA"
 
 python3 -c "import json,sys; json.load(open(sys.argv[1], encoding='utf-8')); print('  JSON valido')" "$SALIDA" 2>/dev/null \

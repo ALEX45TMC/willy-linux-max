@@ -73,6 +73,12 @@
     «descomprime» ni se copian ficheros dentro del USB. Los programas que extraen contenido (modo
     «persistent» con archivos sueltos, o copiar y pegar) no arrancan.</p>
   <div class="pasos">
+    <div class="paso"><h3>Si la bajaste en trozos, júntalos primero</h3>
+      <p>La Release publica la ISO partida en tres ficheros. En Linux, WSL o Git Bash:
+        <code>cat willy-linux-max-2-amd64.iso.part1of3 willy-linux-max-2-amd64.iso.part2of3 willy-linux-max-2-amd64.iso.part3of3 &gt; willy-linux-max-2-amd64.iso</code>.
+        En PowerShell: <code>cmd /c copy /b ...part1of3 + ...part2of3 + ...part3of3 willy-linux-max-2-amd64.iso</code>.
+        Cada trozo tiene su propia huella en <code>SHA256SUMS.txt</code>: si una falla, redescarga ese trozo
+        antes de juntar nada.</p></div>
     <div class="paso"><h3>Desde Linux</h3>
       <p>Identifica el dispositivo entero (no la partición) y escribe:<br>
         <code>lsblk</code><br>
@@ -298,6 +304,7 @@
         <li><a href="ayuda.html">Preguntas frecuentes</a></li>
         <li><a href="ayuda.html#problemas">Problemas conocidos</a></li>
         <li><a href="licencias.html">Licencias y procedencia</a></li>
+        <li><a href="https://github.com/ALEX45TMC/willy-linux-max">Repositorio del sitio e incidencias</a></li>
       </ul>
     </div>
     <div class="legal">

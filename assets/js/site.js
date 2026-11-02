@@ -71,13 +71,66 @@
     if (!cont) return;
     fetch('datos-iso.json', { cache: 'no-store' })
       .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
-      .then(pintarIsos)
+      .then(function (datos) {
+        pintarIsos(datos);
+        pintarPublicacion(datos.publicacion);
+      })
       .catch(function () {
         cont.innerHTML = '<div class="aviso ad"><b>Todavía no hay un <code>datos-iso.json</code> legible.</b> ' +
           'Se genera con <code>bash generar-datos-iso.sh</code> junto al ISO. Si estás viendo este sitio ' +
           'abierto como fichero local (<code>file://</code>), el navegador no puede leer el JSON: ' +
           'sirve la carpeta con un pequeño servidor HTTP.</div>';
       });
+  }
+
+  // Bloque de descarga: sale de datos-publicacion.json, metido dentro de datos-iso.json
+  // por el mismo guion. Si no hay publicación, se dice en vez de dejar la página en silencio.
+  function pintarPublicacion(pub) {
+    var cont = document.getElementById('publicacion-iso');
+    if (!cont) return;
+    if (!pub || !pub.trozos || !pub.trozos.length) {
+      cont.innerHTML = '<div class="aviso ad"><b>Esta edición todavía no está publicada.</b> La página se ' +
+        'rellena sola en cuanto <code>datos-publicacion.json</code> traiga la Release con sus trozos y huellas.</div>';
+      return;
+    }
+    var html = '<div class="aviso"><b>Publicada en GitHub como <code>' + esc(pub.etiqueta) + '</code></b> el ' +
+      esc(pub.publicada) + '. ' + esc(pub.motivo_partido) + '</div>';
+
+    html += '<div class="botones">';
+    for (var i = 0; i < pub.trozos.length; i++) {
+      var t = pub.trozos[i];
+      html += '<a class="boton" href="' + esc(t.url) + '">Trozo ' + (i + 1) + ' de ' + pub.trozos.length +
+        ' · ' + esc(t.tamaño_legible) + '</a>';
+    }
+    html += '<a class="boton secundario" href="' + esc(pub.sums_url) + '">SHA256SUMS.txt</a>';
+    html += '<a class="boton secundario" href="' + esc(pub.url_release) + '">Ficha de la Release</a>';
+    html += '</div>';
+
+    html += '<div class="tabla"><table><thead><tr><th>Trozo</th><th>Peso</th><th>sha256 del trozo</th></tr></thead><tbody>';
+    for (var j = 0; j < pub.trozos.length; j++) {
+      var p = pub.trozos[j];
+      html += '<tr><td><a href="' + esc(p.url) + '"><code>' + esc(p.nombre) + '</code></a></td>' +
+        '<td>' + esc(p.tamaño_legible) + '<br><span class="sub">' + esc(p.bytes) + ' bytes</span></td>' +
+        '<td><code>' + esc(p.sha256) + '</code></td></tr>';
+    }
+    html += '</tbody></table></div>';
+
+    html += '<h3>Juntarlos</h3><pre>cat ' + esc(pub.iso.archivo) + '.part1of3 \\\n' +
+      '    ' + esc(pub.iso.archivo) + '.part2of3 \\\n' +
+      '    ' + esc(pub.iso.archivo) + '.part3of3 \\\n' +
+      '    > ' + esc(pub.iso.archivo) + '\n' +
+      'sha256sum ' + esc(pub.iso.archivo) + '\n' +
+      '#  ' + esc(pub.iso.sha256) + '</pre>';
+
+    html += '<div class="aviso"><b>' + esc(pub.comprobado) + '</b> La huella del ISO completo es ' +
+      '<code>' + esc(pub.iso.sha256) + '</code> (' + esc(pub.iso.bytes) + ' bytes). ' +
+      'En Windows, desde PowerShell: <code>cmd /c copy /b ' + esc(pub.iso.archivo) + '.part1of3 + ' +
+      esc(pub.iso.archivo) + '.part2of3 + ' + esc(pub.iso.archivo) + '.part3of3 ' + esc(pub.iso.archivo) +
+      '</code> y después <code>Get-FileHash .' + '\\' + esc(pub.iso.archivo) + ' -Algorithm SHA256</code>.</div>';
+
+    html += '<p class="sub">Repo del proyecto: <a href="' + esc(pub.url_repo) + '"><code>' + esc(pub.repo) +
+      '</code></a> · Incidencias: <a href="' + esc(pub.url_incidencias) + '">abrir un reporte</a></p>';
+    cont.innerHTML = html;
   }
 
   function pintarIsos(datos) {

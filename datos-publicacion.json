@@ -1,0 +1,41 @@
+{
+  "repo": "ALEX45TMC/willy-linux-max",
+  "url_repo": "https://github.com/ALEX45TMC/willy-linux-max",
+  "url_incidencias": "https://github.com/ALEX45TMC/willy-linux-max/issues",
+  "url_pagina": "https://alex45tmc.github.io/willy-linux-max/",
+  "etiqueta": "v2",
+  "url_release": "https://github.com/ALEX45TMC/willy-linux-max/releases/tag/v2",
+  "publicada": "2026-11-02T00:59:51Z",
+  "iso": {
+    "archivo": "willy-linux-max-2-amd64.iso",
+    "bytes": 4773888000,
+    "tamaño_legible": "4,77 GB",
+    "sha256": "2272048b8d9264f2c5eece0d05646276f228762e11ded20c157f0ec98fcc7e7c"
+  },
+  "motivo_partido": "GitHub no admite ficheros de más de 2 GiB como fichero de una Release, y la imagen pesa 4,45 GiB. Se sube partida en tres trozos: concatenarlos en orden reproduce el ISO exacto.",
+  "comprobado": "Las tres huellas de abajo se calcularon sobre los trozos ya escritos, y el hash de los tres leídos en orden dio la misma huella del ISO completo antes de subirlos. No es un dato copiado de otro lado.",
+  "sums_url": "https://github.com/ALEX45TMC/willy-linux-max/releases/download/v2/SHA256SUMS.txt",
+  "trozos": [
+    {
+      "nombre": "willy-linux-max-2-amd64.iso.part1of3",
+      "bytes": 1677721600,
+      "tamaño_legible": "1,68 GB",
+      "sha256": "9044dcfe6d5afcc0d0140cbf82aafe92598bbc11363fbf6c4ca93c7d406b986c",
+      "url": "https://github.com/ALEX45TMC/willy-linux-max/releases/download/v2/willy-linux-max-2-amd64.iso.part1of3"
+    },
+    {
+      "nombre": "willy-linux-max-2-amd64.iso.part2of3",
+      "bytes": 1677721600,
+      "tamaño_legible": "1,68 GB",
+      "sha256": "1eeed3a18f212aa0f2a9c5940517c4e116632727296f8c77c882e54f515f6cd5",
+      "url": "https://github.com/ALEX45TMC/willy-linux-max/releases/download/v2/willy-linux-max-2-amd64.iso.part2of3"
+    },
+    {
+      "nombre": "willy-linux-max-2-amd64.iso.part3of3",
+      "bytes": 1418444800,
+      "tamaño_legible": "1,42 GB",
+      "sha256": "ee1deafc4b16779cfc02b7c8e7116f591126fc2c139bd187a02a542898c2ec98",
+      "url": "https://github.com/ALEX45TMC/willy-linux-max/releases/download/v2/willy-linux-max-2-amd64.iso.part3of3"
+    }
+  ]
+}

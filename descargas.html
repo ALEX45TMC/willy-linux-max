@@ -35,10 +35,11 @@
   <div>
     <p class="eyebrow">Descargas</p>
     <h2>La imagen, su peso y su huella</h2>
-    <p class="sub">Willy Linux Max 2 se entrega como <b>un solo fichero</b>: una ISO híbrida que es sesión live
-      e instalador a la vez. Los datos de abajo (tamaño, fecha, sha256) no están escritos a mano en la página:
-      los genera un guion leyendo el directorio donde se quema la imagen, así que no pueden quedarse
-      desfasados ni decir una huella inventada.</p>
+    <p class="sub">Willy Linux Max 2 es <b>una sola ISO híbrida</b> —sesión live e instalador a la vez—, y se
+      baja <b>en tres trozos</b> porque ningún servidor público acepta un fichero de 4,45 GiB de una vez.
+      Juntarlos reproduce el ISO exacto. Los datos de abajo (tamaño, fecha, sha256) no están escritos a mano
+      en la página: los genera un guion leyendo el directorio donde se quema la imagen y el registro de la
+      publicación, así que no pueden quedarse desfasados ni decir una huella inventada.</p>
   </div>
 </section>
 
@@ -46,10 +47,12 @@
   <p class="eyebrow">Estado de la build</p>
   <h2>Imágenes disponibles</h2>
   <div id="estado-iso"><p class="cargando">Leyendo <code>datos-iso.json</code>…</p></div>
-  <div class="aviso ad"><b>Publicación de la imagen.</b> Por ahora la ISO se reparte <b>directamente</b> (USB
-    o copia de un disco), no desde un servidor de descargas público: es una build de trabajo de grado que
-    todavía tiene dos verificaciones abiertas. Cuando la imagen esté cerrada y auditada se decide el canal
-    público, y esta página se actualiza con el enlace y su huella.</div>
+
+  <h3>Descargar la edición publicada</h3>
+  <div id="publicacion-iso"><p class="cargando">Leyendo la publicación…</p></div>
+  <p class="sub">Estas direcciones y estas huellas tampoco están escritas a mano en la página: salen de
+    <code>datos-publicacion.json</code>, que se genera al publicar y se versiona junto al sitio. Si la Release
+    cambia, cambia el fichero y la página se sola se rellena con lo nuevo.</p>
 </section>
 
 <section id="contenido">
@@ -157,6 +160,7 @@
         <li><a href="ayuda.html">Preguntas frecuentes</a></li>
         <li><a href="ayuda.html#problemas">Problemas conocidos</a></li>
         <li><a href="licencias.html">Licencias y procedencia</a></li>
+        <li><a href="https://github.com/ALEX45TMC/willy-linux-max">Repositorio del sitio e incidencias</a></li>
       </ul>
     </div>
     <div class="legal">
