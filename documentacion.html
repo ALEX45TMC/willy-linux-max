@@ -169,10 +169,14 @@
     <div class="paso"><h3>Terminar</h3><p>Marca «reiniciar ahora», quita el USB cuando la pantalla lo pida y
       el equipo arranca con GRUB de Willy.</p></div>
   </div>
-  <div class="aviso ad"><b>Estado de este paso en la build en curso.</b> La instalación completa en un disco
-    real de hardware todavía está en verificación: en máquina virtual el asistente llegaba hasta el paso de
-    ubicación y se detenía antes de Particiones, y ese defecto está abierto mientras se quema la imagen.
-    Para el trabajo de grado se documenta como ensayo pendiente, no como garantía.</div>
+  <div class="aviso ad"><b>Estado de este paso en la build en curso.</b> En la edición anterior el
+    instalador <b>no llegaba a abrir</b>: la causa estaba dentro de la propia imagen, en
+    <code>/etc/calamares/modules/welcome.conf</code>, cuyo YAML quedó roto y Calamares rechazaba el
+    módulo de portada con <code>illegal map value</code> en la línea 13. Eso está arreglado y
+    verificado leyendo el <code>filesystem.squashfs</code> de esta ISO, no el registro del quemado.
+    Lo que sigue abierto es el recorrido completo: la instalación guiada hasta el final en un disco
+    físico real todavía no se ha ensayado en hardware. Para el trabajo de grado se documenta como
+    ensayo pendiente, no como garantía.</div>
 </section>
 
 <section id="despues">

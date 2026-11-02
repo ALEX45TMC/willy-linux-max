@@ -158,10 +158,21 @@
         en esa cuenta (por ejemplo, una creada antes del arreglo o con configuración previa).</td><td>
         Preferencias del Sistema → Aspecto → Elegir el paquete de aspecto de Willy y aplicar. Solo cambia el
         aspecto, no borra tus paneles personalizados.</td></tr>
+      <tr><td>El instalador no abre, o se cierra al instante</td><td>Síntoma de la edición retirada
+        <code>v2</code>: su <code>/etc/calamares/modules/welcome.conf</code> tenía el YAML roto y
+        Calamares no construía el módulo de portada (<code>Module welcome@welcome cannot be
+        created</code>). En la edición actual está arreglado.</td><td>Comprobar la huella del ISO
+        contra la de la <i>Release</i> más reciente y volver a grabar. Si la huella sale distinta, el
+        USB se escribió a medias; si coincide con la vieja, estás arrancando la imagen retirada.</td></tr>
       <tr><td>El instalador se detiene antes de terminar</td><td>Defecto abierto en la build en curso: la
         instalación guiada hasta el final todavía no está verificada en hardware.</td><td>Probar en una máquina
         virtual primero, guardar el registro con el botón «Depuración» del instalador y reportarlo. Si hay un
         equipo donde se pueda perder el contenido del disco, es el mejor banco de pruebas.</td></tr>
+      <tr><td>Arranca en modo texto y se ve el nombre de otra distribución</td><td>Pasaba en la edición
+        retirada: el tema de texto de Plymouth (<code>willy-text.plymouth</code>) había quedado a 0
+        bytes al generarse, y el arranque sin KMS caía al tema de la distro madre.</td><td>Actualizar a
+        la edición actual. Mientras tanto, el nombre que se ve en ese modo texto no afecta al sistema
+        instalado: es solo el tema del initrd.</td></tr>
     </tbody>
   </table></div>
 </section>

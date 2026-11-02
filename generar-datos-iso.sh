@@ -16,9 +16,12 @@ SUMS="$ISO_DIR/SHA256SUMS"
 
 [ -d "$ISO_DIR" ] || { echo "no existe $ISO_DIR" >&2; exit 1; }
 
-# Marca: se lee del propio guion de la build, no se duplica el literal.
-NOMBRE="$(sed -n 's/^NOMBRE="\(.*\)"/\1/p' "$PROYECTO/capa-marca.sh" | head -1)"
-VERSION="$(sed -n 's/^VERSION="\(.*\)"/\1/p' "$PROYECTO/capa-marca.sh" | head -1)"
+# Marca: se lee del propio guion de la build, no se duplica el literal. El if es porque con
+# set -e y pipefail un sed sobre un fichero inexistente mata el guion aunque haya defecto abajo.
+if [ -f "$PROYECTO/capa-marca.sh" ]; then
+  NOMBRE="$(sed -n 's/^NOMBRE="\(.*\)"/\1/p' "$PROYECTO/capa-marca.sh" | head -1)"
+  VERSION="$(sed -n 's/^VERSION="\(.*\)"/\1/p' "$PROYECTO/capa-marca.sh" | head -1)"
+fi
 NOMBRE="${NOMBRE:-Willy Linux Max}"
 VERSION="${VERSION:-2}"
 

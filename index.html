@@ -143,9 +143,11 @@
       <tr><td>Panel en dos tramos y reloj con la fecha debajo</td><td>Probado</td><td>Captura del escritorio; el layout va en el paquete de aspecto activo, no en el del shell.</td></tr>
       <tr><td>Aplicaciones de la fase 5 (navegadores, ofimática, creatividad)</td><td>Probado en el artefacto</td><td>Auditoría de 20 piezas dentro del squashfs del ISO, lanzadores leídos uno a uno.</td></tr>
       <tr><td><code>.exe</code> con .NET sin red</td><td>Probado</td><td>Prueba de fuego con el prefijo limpio y la red cortada: Wine instaló el mono local y un ensamblado real respondió.</td></tr>
-      <tr><td>Instalación guiada hasta el final en un disco real</td><td>En curso</td><td>Falta el ensayo completo en hardware; en máquina virtual se detuvo antes de Particiones.</td></tr>
+      <tr><td>Instalación guiada hasta el final en un disco real</td><td>En curso</td><td>La causa de que no abriera está encontrada y arreglada (el YAML de <code>welcome.conf</code> dentro de la imagen); falta el ensayo completo en hardware.</td></tr>
       <tr><td>Pestaña «Info» pintada en la sesión live</td><td>En curso</td><td>Compilada y validada dentro del quemado (plugin con su sección de metadatos); falta la captura en la máquina virtual.</td></tr>
       <tr><td>Aplicaciones .apk</td><td>Guía incluida</td><td>Waydroid no cabe en una sesión live; la guía comprueba requisitos en el equipo instalado.</td></tr>
+      <tr><td>Arranque en modo texto con la marca de Willy</td><td>Verificado en el artefacto</td><td>El tema <code>willy-text.plymouth</code> dentro del squashfs: 310 bytes y <code>title=Willy Linux Max 2</code>. En la edición retirada pesaba 0 bytes.</td></tr>
+      <tr><td>Enlaces de soporte del sistema instalado</td><td>Verificado en el artefacto</td><td><code>/usr/lib/os-release</code> y el <code>branding.desc</code> de Calamares leídos dentro del ISO: las cuatro URLs apuntan al sitio y a las incidencias del proyecto.</td></tr>
     </tbody>
   </table></div>
   <div class="aviso ad"><b>Antes de presentarla como definitiva.</b> Los dos puntos «en curso» están
