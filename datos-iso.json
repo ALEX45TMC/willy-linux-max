@@ -1,48 +1,48 @@
 {
   "producto": "Willy Linux Max",
   "version": "2",
-  "generado": "2026-11-02T03:25:09Z",
+  "generado": "2026-11-04T01:12:32Z",
   "aviso": "",
-  "iso_principal": {"archivo":"willy-linux-max-2-amd64.iso","version":"2","bytes":4773888000,"tamaño_legible":"4.77 GB","compilada":"2026-11-02T02:53:54Z","sha256":"d8f3148bc570c314642d1e289635c9fa483129f4f66586100b8d106264ddcae0","notas":"Imagen hibrida live + instalador, para USB. Contiene el sistema completo descrito en esta pagina."},
-  "retiradas": [{"archivo":"willy-linux-max-2-amd64.anterior-261027-1834.iso","bytes":3707764736,"tamaño_legible":"3.71 GB","compilada":"2026-10-27","sha256":"retirada, sin firma registrada"},{"archivo":"willy-linux-max-2-amd64.anterior-261027-2045.iso","bytes":3707764736,"tamaño_legible":"3.71 GB","compilada":"2026-10-27","sha256":"retirada, sin firma registrada"},{"archivo":"willy-linux-max-2-amd64.anterior-261031-0954.iso","bytes":3707764736,"tamaño_legible":"3.71 GB","compilada":"2026-10-28","sha256":"retirada, sin firma registrada"},{"archivo":"willy-linux-max-2-amd64.anterior-261031-1202.iso","bytes":3670622208,"tamaño_legible":"3.67 GB","compilada":"2026-10-31","sha256":"retirada, sin firma registrada"},{"archivo":"willy-linux-max-2-amd64.anterior-261031-1412.iso","bytes":3650289664,"tamaño_legible":"3.65 GB","compilada":"2026-10-31","sha256":"retirada, sin firma registrada"},{"archivo":"willy-linux-max-2-amd64.anterior-261031-1921.iso","bytes":3690987520,"tamaño_legible":"3.69 GB","compilada":"2026-10-31","sha256":"retirada, sin firma registrada"},{"archivo":"willy-linux-max-2-amd64.anterior-261031-1959.iso","bytes":4579061760,"tamaño_legible":"4.58 GB","compilada":"2026-11-01","sha256":"retirada, sin firma registrada"},{"archivo":"willy-linux-max-2-amd64.anterior-261031-2056.iso","bytes":4538419200,"tamaño_legible":"4.54 GB","compilada":"2026-11-01","sha256":"retirada, sin firma registrada"},{"archivo":"willy-linux-max-2-amd64.anterior-261101-1436.iso","bytes":4733116416,"tamaño_legible":"4.73 GB","compilada":"2026-11-01","sha256":"retirada, sin firma registrada"},{"archivo":"willy-linux-max-2-amd64.anterior-261101-1930.iso","bytes":4769114112,"tamaño_legible":"4.77 GB","compilada":"2026-11-01","sha256":"retirada, sin firma registrada"},{"archivo":"willy-linux-max-2-amd64.anterior-261101-2147.iso","bytes":4773888000,"tamaño_legible":"4.77 GB","compilada":"2026-11-02","sha256":"retirada, sin firma registrada"}],
+  "iso_principal": {"archivo":"willy-linux-max-2-amd64.iso","version":"2","bytes":4778661888,"tamaño_legible":"4.78 GB","compilada":"2026-11-04T00:50:12Z","sha256":"d1dd1fd07d224501abcd8d7aca4ecd9b5a72df01242456d5725575a7692a2b5e","notas":"Imagen hibrida live + instalador, para USB. Contiene el sistema completo descrito en esta pagina."},
+  "retiradas": [{"archivo":"willy-linux-max-2-amd64.anterior-261031-2056.iso","bytes":4538419200,"tamaño_legible":"4.54 GB","compilada":"2026-11-01","sha256":"retirada, sin firma registrada"},{"archivo":"willy-linux-max-2-amd64.anterior-261101-1436.iso","bytes":4733116416,"tamaño_legible":"4.73 GB","compilada":"2026-11-01","sha256":"retirada, sin firma registrada"},{"archivo":"willy-linux-max-2-amd64.anterior-261101-1930.iso","bytes":4769114112,"tamaño_legible":"4.77 GB","compilada":"2026-11-01","sha256":"retirada, sin firma registrada"},{"archivo":"willy-linux-max-2-amd64.anterior-261101-2147.iso","bytes":4773888000,"tamaño_legible":"4.77 GB","compilada":"2026-11-02","sha256":"retirada, sin firma registrada"},{"archivo":"willy-linux-max-2-amd64.anterior-261103-1947.iso","bytes":4773888000,"tamaño_legible":"4.77 GB","compilada":"2026-11-02","sha256":"retirada, sin firma registrada"}],
   "publicacion": {
   "repo": "ALEX45TMC/willy-linux-max",
   "url_repo": "https://github.com/ALEX45TMC/willy-linux-max",
   "url_incidencias": "https://github.com/ALEX45TMC/willy-linux-max/issues",
   "url_pagina": "https://alex45tmc.github.io/willy-linux-max/",
-  "etiqueta": "v2.1",
-  "url_release": "https://github.com/ALEX45TMC/willy-linux-max/releases/tag/v2.1",
-  "publicada": "2026-11-02T03:24:44Z",
+  "etiqueta": "v2.2",
+  "url_release": "https://github.com/ALEX45TMC/willy-linux-max/releases/tag/v2.2",
+  "publicada": "2026-11-04T01:12:30Z",
   "iso": {
     "archivo": "willy-linux-max-2-amd64.iso",
-    "bytes": 4773888000,
-    "tamaño_legible": "4.77 GB",
-    "sha256": "d8f3148bc570c314642d1e289635c9fa483129f4f66586100b8d106264ddcae0"
+    "bytes": 4778661888,
+    "tamaño_legible": "4.78 GB",
+    "sha256": "d1dd1fd07d224501abcd8d7aca4ecd9b5a72df01242456d5725575a7692a2b5e"
   },
   "motivo_partido": "GitHub no admite ficheros de más de 2 GiB como fichero de una Release, y la imagen pesa 4.45 GiB. Se sube partida en 3 trozos: concatenarlos en orden reproduce el ISO exacto.",
   "comprobado": "Cada huella se calculó leyendo del ISO el mismo rango de bytes que sube la Release, y la concatenación de los 3 trozos leídos en orden reproduce la huella del ISO completo: eso se comprueba aqui antes de escribir este fichero. Al subir, cada trozo se vuelve a calcular en local y se compara con su fila de SHA256SUMS.txt. No es un dato copiado de otro sitio.",
-  "sums_url": "https://github.com/ALEX45TMC/willy-linux-max/releases/download/v2.1/SHA256SUMS.txt",
+  "sums_url": "https://github.com/ALEX45TMC/willy-linux-max/releases/download/v2.2/SHA256SUMS.txt",
   "trozos": [
     {
       "nombre": "willy-linux-max-2-amd64.iso.part1of3",
       "bytes": 1677721600,
       "tamaño_legible": "1.68 GB",
-      "sha256": "d5ba591338debf060897696d609819000cf56f5bad4e07de969ff02f0fcfbb1c",
-      "url": "https://github.com/ALEX45TMC/willy-linux-max/releases/download/v2.1/willy-linux-max-2-amd64.iso.part1of3"
+      "sha256": "0a9b2796ba42aa5bb88f3506722fd261bd60742f1f618a42150fa9ae32b000ad",
+      "url": "https://github.com/ALEX45TMC/willy-linux-max/releases/download/v2.2/willy-linux-max-2-amd64.iso.part1of3"
     },
     {
       "nombre": "willy-linux-max-2-amd64.iso.part2of3",
       "bytes": 1677721600,
       "tamaño_legible": "1.68 GB",
-      "sha256": "52e8b79ef9e850e2a14252f53c2622de1b6560450f2a3f5add02f6ac732abb7c",
-      "url": "https://github.com/ALEX45TMC/willy-linux-max/releases/download/v2.1/willy-linux-max-2-amd64.iso.part2of3"
+      "sha256": "c3d0285cb4e03b471561b0bc52ae047130aed97f4273db88c3b1232c2b6a5d08",
+      "url": "https://github.com/ALEX45TMC/willy-linux-max/releases/download/v2.2/willy-linux-max-2-amd64.iso.part2of3"
     },
     {
       "nombre": "willy-linux-max-2-amd64.iso.part3of3",
-      "bytes": 1418444800,
+      "bytes": 1423218688,
       "tamaño_legible": "1.42 GB",
-      "sha256": "084e156f36e230508a9b332b5cd549ecd3e4441ae7bba506403eddbecda63aec",
-      "url": "https://github.com/ALEX45TMC/willy-linux-max/releases/download/v2.1/willy-linux-max-2-amd64.iso.part3of3"
+      "sha256": "9fb67f52c076c71b08fdf3c9fd63e258db01113899a134fcccbf662d4272bc6e",
+      "url": "https://github.com/ALEX45TMC/willy-linux-max/releases/download/v2.2/willy-linux-max-2-amd64.iso.part3of3"
     }
   ]
 }
