@@ -96,6 +96,36 @@
     var html = '<div class="aviso"><b>Publicada en GitHub como <code>' + esc(pub.etiqueta) + '</code></b> el ' +
       esc(pub.publicada) + '. ' + esc(pub.motivo_partido) + '</div>';
 
+    // Espejos: los pone una persona a mano en datos-publicacion.json (claves nombre, url, nota,
+    // tamano_legible). No los genera el guion de publicación, porque no se puede comprobar desde
+    // aquí que el fichero de un tercero sea el nuestro; lo que se comprueba es la huella, ya abajo.
+    var espejos = pub.espejos || [];
+    if (espejos.length) {
+      html += '<h3>Descarga completa, en un solo fichero</h3>';
+      html += '<div class="botones">';
+      for (var s = 0; s < espejos.length; s++) {
+        var e = espejos[s];
+        html += '<a class="boton" href="' + esc(e.url) + '" rel="noopener">Descargar entera desde ' +
+          esc(e.nombre) + '</a>';
+      }
+      html += '</div>';
+      html += '<p class="sub">El espejo guarda el fichero fuera de GitHub, así que la huella es la que decide ' +
+        'que sea la imagen: debe dar exactamente <code>' + esc(pub.iso.sha256) + '</code>, la misma que sale de ' +
+        'juntar los trozos. En Mega, lo que va después del <code>#</code> en la dirección es la clave de ' +
+        'descifrado: si se corta al copiar el enlace, el fichero no abre.</p>';
+      for (var s2 = 0; s2 < espejos.length; s2++) {
+        var e2 = espejos[s2];
+        if (e2.iso_sha256 && e2.iso_sha256 !== pub.iso.sha256) {
+          html += '<div class="aviso peligro"><b>' + esc(e2.nombre) + ' tiene otra imagen.</b> Su enlace anuncia ' +
+            '<code>' + esc(e2.iso_sha256) + '</code> y la edición publicada es ' + '<code>' + esc(pub.iso.sha256) +
+            '</code>: use los trozos de abajo.</div>';
+        } else if (e2.nota) {
+          html += '<p class="sub">' + esc(e2.nota) + '</p>';
+        }
+      }
+    }
+
+    html += '<h3>Descarga en trozos desde la Release</h3>';
     html += '<div class="botones">';
     for (var i = 0; i < pub.trozos.length; i++) {
       var t = pub.trozos[i];

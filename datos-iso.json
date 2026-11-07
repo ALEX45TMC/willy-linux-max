@@ -22,6 +22,15 @@
   "motivo_partido": "GitHub no admite ficheros de más de 2 GiB como fichero de una Release, y la imagen pesa 4.45 GiB. Se sube partida en 3 trozos: concatenarlos en orden reproduce el ISO exacto.",
   "comprobado": "Cada huella se calculó leyendo del ISO el mismo rango de bytes que sube la Release, y la concatenación de los 3 trozos leídos en orden reproduce la huella del ISO completo: eso se comprueba aqui antes de escribir este fichero. Al subir, cada trozo se vuelve a calcular en local y se compara con su fila de SHA256SUMS.txt. No es un dato copiado de otro sitio.",
   "sums_url": "https://github.com/ALEX45TMC/willy-linux-max/releases/download/v2.2/SHA256SUMS.txt",
+  "espejos": [
+    {
+      "nombre": "MEGA",
+      "url": "https://mega.nz/file/cmR02DhD#yVT4iv3j3yzQS-nQ4B1iG-bje1Gp-J1wZN-w3EsG-2E",
+      "archivo": "willy-linux-max-2-amd64.iso",
+      "iso_sha256": "d1dd1fd07d224501abcd8d7aca4ecd9b5a72df01242456d5725575a7692a2b5e",
+      "nota": "Enlace puesto por la autora el 07-11. El fichero vive en el servidor del espejo, fuera de GitHub, así que lo único que decide es la huella: si no sale la del ISO de arriba, vuelva a descargar o use los trozos. La parte que va después del # en la dirección es la clave de descifrado de Mega; si se corta al copiar, el enlace no abre."
+    }
+  ],
   "trozos": [
     {
       "nombre": "willy-linux-max-2-amd64.iso.part1of3",
